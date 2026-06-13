@@ -261,39 +261,3 @@ html[data-wf-page="63d23de68cc852f56e2b5c7e"] > body > .uui-text-size-large-9 {
     margin-top: 40px;
   }
 }
-
-/* ---------------------------------------------------------------------
-   11. Homepage hero — opschonen, centreren en meer punch
-   - Het lege restant-blok (.header-top, uit Webflow) verbergen: het gaf
-     dode ruimte en duwde de hero-inhoud uit het midden.
-   - Kop, subkop en knoppen strak gecentreerd.
-   - Kop iets meer karakter (letter-spacing).
-   Alles gescoped naar de homepage (data-wf-page).
-   --------------------------------------------------------------------- */
-html[data-wf-page="63d23de68cc8523cd82b5c60"] .header-top {
-  display: none;
-}
-
-html[data-wf-page="63d23de68cc8523cd82b5c60"] .lynx-block-hero-large {
-  text-align: center;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-html[data-wf-page="63d23de68cc8523cd82b5c60"] .lynx-block-hero-large .lynx-paragraph-white {
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-html[data-wf-page="63d23de68cc8523cd82b5c60"] .lynx-block-hero-large .div-block-7 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}
-
-html[data-wf-page="63d23de68cc8523cd82b5c60"] .lynx-heading-white {
-  letter-spacing: .015em;
-}
