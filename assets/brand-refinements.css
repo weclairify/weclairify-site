@@ -235,3 +235,29 @@ img { image-rendering: auto; }
     transition-duration: .001ms !important;
   }
 }
+
+/* ---------------------------------------------------------------------
+   10. Over-pagina — hero netjes centreren & uitlijnen
+   De paginatitel en de introtekst stonden als losse, volle-breedte
+   elementen direct in <body>, zonder container of max-breedte. Daardoor
+   liepen ze van rand tot rand. Hier scopen we de fix naar uitsluitend
+   deze pagina (data-wf-page) en uitsluitend de losse hero-elementen
+   (directe kinderen van body), zodat geen andere blokken meebewegen.
+   --------------------------------------------------------------------- */
+html[data-wf-page="63d23de68cc852f56e2b5c7e"] > body > .heading-11 {
+  text-align: center;
+  margin: 72px auto 20px;
+  padding: 0 24px;
+}
+
+html[data-wf-page="63d23de68cc852f56e2b5c7e"] > body > .uui-text-size-large-9 {
+  max-width: 760px;
+  margin: 0 auto 56px;
+  padding: 0 24px;
+}
+
+@media (max-width: 767px) {
+  html[data-wf-page="63d23de68cc852f56e2b5c7e"] > body > .heading-11 {
+    margin-top: 40px;
+  }
+}
