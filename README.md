@@ -49,6 +49,12 @@ Dit is normaal en hoort zo (zelfde als bij Webflow):
 - Google Analytics (`G-GT3ETM02WM`)
 
 ## Lokaal bekijken
+
+**Snel:** dubbelklik gewoon op `index.html` — die opent direct in je browser.
+Alle interne links wijzen naar expliciete `…/index.html`-bestanden, dus ook het
+navigeren tussen pagina's werkt zonder webserver (via `file://`).
+
+**Of via een mini-server** (dichter bij de live-situatie):
 ```bash
 cd weclairify-site
 python3 -m http.server 8000
