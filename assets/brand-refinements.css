@@ -1,0 +1,237 @@
+/* =====================================================================
+   weClairify — Brand Refinements
+   ---------------------------------------------------------------------
+   Een aanvullende laag bovenop de Webflow-export. Doel: de bestaande
+   huisstijl (neo-brutalistisch, speels multicolor met brand-paars
+   #7f0545) consistenter, toegankelijker en verfijnder maken — zonder
+   de inhoud of de layout te veranderen. Niets hier herschrijft de
+   originele componenten; het polijst alleen interactie, focus,
+   typografie en detail.
+   ===================================================================== */
+
+:root {
+  /* Brand-tokens, afgeleid uit de bestaande huisstijl */
+  --wc-brand: #7f0545;          /* kern: weClairify-paars/burgundy   */
+  --wc-brand-dark: #5e0333;     /* dieper, voor hover/contrast        */
+  --wc-brand-soft: #f6cbe4;     /* zacht roze-paars accent            */
+  --wc-ink: #141414;            /* tekst/randen (neutral 800)         */
+
+  /* Consistente bewegings- en schaduwtaal */
+  --wc-ease: cubic-bezier(.6, .6, 0, 1);
+  --wc-speed: .25s;
+  --wc-radius: 6px;
+}
+
+/* ---------------------------------------------------------------------
+   1. Tekst-rendering & ritme
+   --------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+/* Mooiere, gebalanceerde regelafbreking in koppen */
+h1, h2, h3,
+.uui-heading-xlarge-3,
+.uui-heading-medium-7,
+.lynx-heading-white,
+.h2-heading,
+.combine-heading-style-h2-18,
+.heading-39 {
+  text-wrap: balance;
+}
+
+p, .text-block-17, .uui-text-size-xlarge-4 {
+  text-wrap: pretty;
+}
+
+/* ---------------------------------------------------------------------
+   2. Merk-accenten: selectie & scrollbar
+   --------------------------------------------------------------------- */
+::selection {
+  background-color: var(--wc-brand);
+  color: #fff;
+}
+
+@supports (scrollbar-color: auto) {
+  html {
+    scrollbar-color: var(--wc-brand) #efe7ee;
+  }
+}
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #efe7ee; }
+::-webkit-scrollbar-thumb {
+  background: var(--wc-brand);
+  border-radius: 10px;
+  border: 3px solid #efe7ee;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--wc-brand-dark); }
+
+/* ---------------------------------------------------------------------
+   3. Toegankelijke, merk-gekleurde focus voor toetsenbordgebruikers
+   --------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.w-button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--wc-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Subtiele merk-ring op formuliervelden bij focus */
+.text-field-plain:focus,
+.text-field:focus {
+  border-color: var(--wc-brand) !important;
+  box-shadow: 0 0 0 3px rgba(127, 5, 69, .12);
+  transition: box-shadow var(--wc-speed) var(--wc-ease),
+              border-color var(--wc-speed) var(--wc-ease);
+}
+
+/* ---------------------------------------------------------------------
+   4. Knoppen — tactielere, consistente interactie
+   Behoudt de neo-brutalistische "harde schaduw"-stijl, maar geeft
+   alle primaire knoppen dezelfde, soepele "indruk"-feedback.
+   --------------------------------------------------------------------- */
+.button-primary,
+.button-primary-small,
+.button-primary-full,
+.button-primary-full-copy,
+.combine-button-small-2,
+.button-primary-right-icon {
+  transition: transform var(--wc-speed) var(--wc-ease),
+              box-shadow var(--wc-speed) var(--wc-ease),
+              background-color .4s var(--wc-ease);
+  will-change: transform;
+}
+
+/* Lichte lift bij hover */
+.button-primary:hover,
+.button-primary-small:hover,
+.combine-button-small-2:hover,
+.button-primary-right-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 0 var(--wc-ink);
+}
+
+/* Indrukken bij klik = tactiele bevestiging */
+.button-primary:active,
+.button-primary-small:active,
+.button-primary-full:active,
+.button-primary-full-copy:active,
+.combine-button-small-2:active,
+.button-primary-right-icon:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 0 var(--wc-ink);
+}
+
+/* "Boek een kennismaking" (geel) krijgt bij hover de merkkleur als
+   subtiele bevestiging dat dit de primaire conversie-actie is */
+.nav-link.button-primary-small:hover .text-span-11 {
+  color: var(--wc-brand-dark);
+}
+
+/* ---------------------------------------------------------------------
+   5. Kaarten — consistente hover-lift (services, contact, FAQ)
+   --------------------------------------------------------------------- */
+.service-home,
+.contact-card,
+.combine-faq4_accordion-3,
+.wc-card {
+  transition: transform var(--wc-speed) var(--wc-ease),
+              box-shadow var(--wc-speed) var(--wc-ease);
+}
+
+.service-home:hover,
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -18px rgba(127, 5, 69, .35);
+}
+
+.wc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -15px rgba(127, 5, 69, .25) !important;
+}
+
+/* Icoon in service-kaart reageert mee */
+.service-home:hover .category-icon-wrapper {
+  transform: scale(1.06) rotate(-3deg);
+  transition: transform var(--wc-speed) var(--wc-ease);
+}
+
+/* ---------------------------------------------------------------------
+   6. Navigatie — duidelijker actieve/hover-staat in de merkkleur
+   --------------------------------------------------------------------- */
+.nav-link {
+  position: relative;
+  transition: color var(--wc-speed) var(--wc-ease);
+}
+
+.nav-link:not(.button-primary-small)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--wc-brand);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--wc-speed) var(--wc-ease);
+}
+
+.nav-link:not(.button-primary-small):hover::after,
+.nav-link.w--current:not(.button-primary-small)::after {
+  transform: scaleX(1);
+}
+
+.nav-link:not(.button-primary-small):hover,
+.nav-link.w--current:not(.button-primary-small) {
+  color: var(--wc-brand);
+}
+
+/* ---------------------------------------------------------------------
+   7. Inline tekstlinks — nettere onderstreping
+   --------------------------------------------------------------------- */
+.combine-faq4_answer-3 a,
+.paragraph-6 a,
+.paragraph-11 a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--wc-brand);
+}
+
+/* ---------------------------------------------------------------------
+   8. Afbeeldingen & logo's — zachter en consistenter
+   --------------------------------------------------------------------- */
+img { image-rendering: auto; }
+
+/* "Vertrouwd door"-logo's: rustige, eenvormige presentatie die
+   bij hover oplicht (verbetert de gepercipieerde kwaliteit) */
+.uui-cta12_logo {
+  filter: grayscale(100%);
+  opacity: .7;
+  transition: filter var(--wc-speed) var(--wc-ease),
+              opacity var(--wc-speed) var(--wc-ease);
+}
+.uui-cta12_logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------
+   9. Respecteer gebruikersvoorkeur voor minder beweging
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
