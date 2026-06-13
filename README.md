@@ -13,13 +13,33 @@ Een volledige, statische kopie van [weclairify.com](https://www.weclairify.com),
 ├── over/index.html                     # /over
 ├── tools/index.html                    # /tools
 ├── privay-policy/index.html            # /privay-policy  (typfout uit origineel bewust behouden)
-├── assets/                             # alle CSS, JS, afbeeldingen, SVG's, fonts (143 bestanden)
+├── assets/                             # alle CSS, JS, afbeeldingen, SVG's, fonts
+│   ├── weclairify.webflow.shared…css   # originele Webflow-stijl (niet wijzigen: SRI-hash)
+│   └── brand-refinements.css           # extra huisstijl-laag (zie onder)
 ├── robots.txt
 ├── sitemap.xml
 └── .nojekyll                           # zegt GitHub Pages: serveer bestanden as-is
 ```
 
 Elke pagina staat in een eigen map als `index.html`, zodat schone URLs (`/over`, `/tools`) op elke host werken. Alle assets verwijzen naar `/assets/…` (root-absoluut).
+
+## Huisstijl-verfijningslaag (`brand-refinements.css`)
+De originele Webflow-CSS is bewust **ongewijzigd** gelaten (die heeft een
+SRI-integriteitshash). De huisstijl is verfijnd via een aparte, additieve
+laag die ná de Webflow-stijl wordt geladen op elke pagina. Inhoud en layout
+blijven gelijk; alleen de afwerking is gepolijst:
+
+- **Brand-tokens** rond de kernkleur `#7f0545` (weClairify-paars/burgundy).
+- **Knoppen** met consistente, tactiele hover/indruk-feedback (de bestaande
+  neo-brutalistische "harde schaduw"-stijl blijft behouden).
+- **Kaarten** (services, contact, FAQ) met een eenvormige hover-lift.
+- **Navigatie** met een merk-gekleurde onderstreping voor hover/actief.
+- **Toegankelijkheid**: zichtbare focus-ringen in de merkkleur, merk-`::selection`
+  en respect voor `prefers-reduced-motion`.
+- **"Vertrouwd door"-logo's** rustig in grijswaarden, oplichtend bij hover.
+
+Wil je de verfijning uitzetten? Verwijder de `brand-refinements.css`-`<link>`
+uit de `<head>` van de pagina's — de site valt dan terug op de pure Webflow-stijl.
 
 ## Wat blijft extern laden?
 Dit is normaal en hoort zo (zelfde als bij Webflow):
