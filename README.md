@@ -21,7 +21,7 @@ Een volledige, statische kopie van [weclairify.com](https://www.weclairify.com),
 └── .nojekyll                           # zegt GitHub Pages: serveer bestanden as-is
 ```
 
-Elke pagina staat in een eigen map als `index.html`, zodat schone URLs (`/over`, `/tools`) op elke host werken. Alle assets verwijzen naar `/assets/…` (root-absoluut).
+Elke pagina staat in een eigen map als `index.html`, zodat schone URLs (`/over`, `/tools`) op elke host werken. Alle interne verwijzingen (assets én links tussen pagina's) zijn **relatief** (`assets/…` op de homepage, `../assets/…` op subpagina's). Daardoor werkt de site overal: op een eigen domein (`weclairify.com`), op een user/org-root én op een project-URL met subpad (`…github.io/weclairify-site/`).
 
 ## Huisstijl-verfijningslaag (`brand-refinements.css`)
 De originele Webflow-CSS is bewust **ongewijzigd** gelaten (die heeft een
@@ -56,15 +56,17 @@ python3 -m http.server 8000
 ```
 
 ## Hosten op GitHub Pages
-1. Maak een repo op GitHub (bv. `weclairify-site`).
-2. Push deze map:
-   ```bash
-   git remote add origin https://github.com/<jouw-account>/weclairify-site.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. GitHub → **Settings → Pages** → Source: `Deploy from a branch` → branch `main` / folder `/ (root)` → Save.
-4. Na ~1 min staat de site op `https://<jouw-account>.github.io/weclairify-site/`.
+
+Er zit een kant-en-klare deploy-workflow in `.github/workflows/deploy.yml`.
+Eenmalig instellen:
+
+1. GitHub → **Settings → Pages** → onder *Build and deployment* → Source: **GitHub Actions**.
+2. Klaar. Elke push naar `main` bouwt en publiceert de site automatisch; de
+   workflow toont de live-URL bij *Actions → Deploy to GitHub Pages*.
+3. Na ~1 min staat de site op `https://<jouw-account>.github.io/weclairify-site/`.
+
+> Alternatief zónder Actions: **Settings → Pages → Source: Deploy from a branch**
+> → branch `main`, folder `/ (root)`. Werkt ook, omdat de paden relatief zijn.
 
 ### Eigen domein (weclairify.com)
 Wil je `weclairify.com` koppelen in plaats van Webflow:
@@ -74,4 +76,11 @@ Wil je `weclairify.com` koppelen in plaats van Webflow:
    - apex (`weclairify.com`) → de 4 GitHub Pages A-records (185.199.108–111.153)
 3. Zet de Webflow-publicatie pas uit als GitHub Pages live staat.
 
-> Let op: omdat assets root-absoluut (`/assets/…`) zijn, werkt de site het beste op een eigen domein of op een user/org-root. Bij een project-URL met subpad (`/weclairify-site/`) moet je een custom domain gebruiken.
+> Omdat alle paden relatief zijn, werkt de site zowel op een eigen domein als op
+> de project-URL met subpad. Een `CNAME`-bestand is bewust **niet** toegevoegd,
+> zodat het live domein (nu nog op Webflow) niet per ongeluk wordt omgeleid —
+> voeg dat pas toe via *Settings → Pages → Custom domain* als de DNS klaarstaat.
+
+> **Let op (volledigheid):** dit is een kopie van de 7 hoofdpagina's. Losse
+> detailpagina's (`/ai-tools/…`, `/blog/…`) zijn niet mee-geëxporteerd; links
+> daarnaartoe leiden dus nog nergens heen. De hoofdsite werkt volledig.
