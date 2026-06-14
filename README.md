@@ -7,11 +7,11 @@ Een volledige, statische kopie van [weclairify.com](https://www.weclairify.com),
 ```
 .
 ├── index.html                          # homepage  (/)
-├── ai-nieuws/index.html                # /ai-nieuws
 ├── ai-trainingen/index.html            # /ai-trainingen
 ├── implementatie-automatisering/…      # /implementatie-automatisering
 ├── over/index.html                     # /over
-├── tools/index.html                    # /tools
+├── tools/index.html                    # /tools  (overzicht + uitgelichte tools)
+├── ai-tools/<slug>/index.html          # /ai-tools/…  (421 tool-detailpagina's)
 ├── privay-policy/index.html            # /privay-policy  (typfout uit origineel bewust behouden)
 ├── assets/                             # alle CSS, JS, afbeeldingen, SVG's, fonts
 │   ├── weclairify.webflow.shared…css   # originele Webflow-stijl (niet wijzigen: SRI-hash)
@@ -87,6 +87,8 @@ Wil je `weclairify.com` koppelen in plaats van Webflow:
 > zodat het live domein (nu nog op Webflow) niet per ongeluk wordt omgeleid —
 > voeg dat pas toe via *Settings → Pages → Custom domain* als de DNS klaarstaat.
 
-> **Let op (volledigheid):** dit is een kopie van de 7 hoofdpagina's. Losse
-> detailpagina's (`/ai-tools/…`, `/blog/…`) zijn niet mee-geëxporteerd; links
-> daarnaartoe leiden dus nog nergens heen. De hoofdsite werkt volledig.
+> **Let op (volledigheid):** naast de hoofdpagina's zijn alle **421
+> tool-detailpagina's** (`/ai-tools/…`) mee-overgezet, met hun afbeeldingen
+> lokaal in `assets/`. De "Lezen"/blog (`/ai-nieuws`, `/blog/…`) is bewust
+> niet meegenomen. Formulieren werden voorheen door Webflow afgehandeld en
+> versturen nu nog niets — dat is een losse vervolgstap (form-service of mailto).
