@@ -416,5 +416,19 @@ h4:has(+ .uui-section_layout21) {
 /* ---------------------------------------------------------------------
    16. 'Vertrouwd door'-logo's groter
    --------------------------------------------------------------------- */
-.uui-cta12_logo { height: 4rem !important; }
-.uui-cta12_logo-row { grid-column-gap: 2.5rem !important; row-gap: 1.5rem !important; }
+.uui-cta12_logo-row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  grid-column-gap: 1.25rem !important;
+  gap: 1.25rem !important;
+}
+.uui-cta12_logo {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 3.5rem !important;
+  object-fit: contain !important;
+}
