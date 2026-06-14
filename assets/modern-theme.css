@@ -218,7 +218,107 @@ p, .paragraph-6, .paragraph-7, .paragraph-11,
 }
 
 /* ---------------------------------------------------------------------
-   10. Reduceer beweging op verzoek
+   10. "Waarom kiezen voor weClairify?" — gecentreerd blok met
+       scheidingslijnen en icoon rechts (geïnspireerd op screenshot 2)
+   --------------------------------------------------------------------- */
+h4:has(+ .uui-section_layout21) {
+  text-align: center !important;
+}
+.uui-layout20_component-copy {
+  grid-template-columns: 1fr !important;   /* lege 2e kolom verwijderen */
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.uui-layout21_item-list { margin-top: 1.5rem !important; }
+.uui-layout21_item {
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  border-top: 1px solid var(--wc-border) !important;
+  padding: 22px 4px !important;
+}
+.uui-layout21_item > *:not(.uui-layout21_item-icon-wrapper) {
+  flex: 1 1 auto !important;
+}
+.uui-layout21_item-icon-wrapper {
+  order: 2 !important;                 /* icoon naar rechts */
+  align-self: center !important;
+  margin: 0 0 0 1rem !important;
+  background: rgba(127, 5, 69, .08) !important;
+  color: var(--wc-brand) !important;
+  border-radius: 10px !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+
+/* ---------------------------------------------------------------------
+   11. "Let's talk" + contactblokken naast elkaar (compacter)
+   --------------------------------------------------------------------- */
+#contact-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2.5rem !important;
+}
+#contact-container .form-block {
+  flex: 1 1 360px !important;
+  max-width: 460px !important;
+  margin: 0 !important;
+}
+#contact-container .about-testimonial-container {
+  flex: 1 1 300px !important;
+  max-width: 420px !important;
+}
+#contact-container .contact-grid {
+  grid-template-columns: 1fr !important;   /* 3 kaarten onder elkaar naast het formulier */
+  gap: 1rem !important;
+}
+/* contactkaarten compact als horizontale rijen (icoon links, label rechts) */
+#contact-container .contact-card {
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  padding: 16px 18px !important;
+  min-height: 0 !important;
+}
+#contact-container .contact-card .margin-bottom-08 { margin-bottom: 0 !important; }
+
+/* ---------------------------------------------------------------------
+   12. Team — nette kaarten in een raster (bento-stijl)
+   --------------------------------------------------------------------- */
+.uui-team08_list {
+  grid-template-columns: 1fr 1fr !important;
+  grid-column-gap: 1rem !important;
+  grid-row-gap: 1rem !important;
+}
+.uui-team08_item {
+  border: 1.5px solid var(--wc-border) !important;
+  border-radius: 16px !important;
+  background-color: #fff !important;
+  padding: 18px !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  align-items: center !important;
+  transition: transform .25s var(--wc-ease),
+              box-shadow .25s var(--wc-ease),
+              border-color .25s var(--wc-ease) !important;
+}
+.uui-team08_item:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--wc-shadow-md) !important;
+  border-color: rgba(127, 5, 69, .3) !important;
+}
+.uui-team08_image,
+.uui-team08_image-wrapper { border-radius: 12px !important; }
+
+/* ---------------------------------------------------------------------
+   13. Reduceer beweging op verzoek
    --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: .001ms !important; }
