@@ -1,0 +1,226 @@
+/* =====================================================================
+   weClairify — Modern Theme v2 (BentoML-geïnspireerd, UITGESPROKEN)
+   ---------------------------------------------------------------------
+   Steviger doorgevoerde moderne dev-tool/SaaS-branding: grote bold
+   typografie, monospace "eyebrow"-labels (tech-signatuur), uitgesproken
+   "bento"-kaarten met duidelijke randen en hover-glow, pill-knoppen,
+   een subtiel stippenraster, en een donker contrast-CTA-paneel.
+
+   MET BEHOUD van het weClairify-kleurenpalet (paars #7f0545, lavendel,
+   geel, roze). Geen kleuren van BentoML overgenomen — alleen de
+   vormtaal/branding. Inhoud en structuur blijven gelijk.
+   Laadt ná brand-refinements.css. Volledig terugdraaibaar.
+   ===================================================================== */
+
+:root {
+  --wc-brand: #7f0545;
+  --wc-brand-dark: #5e0333;
+  --wc-ink: #14080f;
+  --wc-radius-card: 20px;
+  --wc-border: rgba(16, 24, 40, .10);
+  --wc-ease: cubic-bezier(.4, 0, .2, 1);
+  --wc-mono: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --wc-shadow-sm: 0 1px 2px rgba(16, 24, 40, .05), 0 1px 3px rgba(16, 24, 40, .08);
+  --wc-shadow-md: 0 8px 24px -6px rgba(16, 24, 40, .12);
+  --wc-shadow-lg: 0 32px 60px -16px rgba(16, 24, 40, .22);
+  --wc-shadow-brand: 0 18px 40px -12px rgba(127, 5, 69, .45);
+}
+
+/* ---------------------------------------------------------------------
+   1. Subtiel tech-stippenraster op de achtergrond (dev-tool signatuur)
+   --------------------------------------------------------------------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.011em;
+  background-color: #fafafa !important;
+  background-image: radial-gradient(rgba(16, 24, 40, .055) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  background-attachment: fixed;
+}
+
+/* ---------------------------------------------------------------------
+   2. Typografie — groot, bold, strak (BentoML-achtige koppen)
+   --------------------------------------------------------------------- */
+h1, h2,
+.uui-heading-xlarge-3, .lynx-heading-white,
+.h2-heading, .combine-heading-style-h2-18 {
+  font-weight: 800 !important;
+  letter-spacing: -0.045em !important;
+  line-height: 1.02 !important;
+}
+.uui-heading-xlarge-3,
+.lynx-heading-white { font-size: clamp(2.6rem, 5.5vw, 4.6rem) !important; }
+.h2-heading,
+.combine-heading-style-h2-18 { font-size: clamp(1.9rem, 3.6vw, 3rem) !important; }
+
+h3, h4, h5,
+.heading-38, .heading-39, .heading-40, .heading-28, .heading-36 {
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+}
+
+p, .paragraph-6, .paragraph-7, .paragraph-11,
+.uui-text-size-xlarge-4, .text-block-17,
+.combine-text-size-regular-19, .combine-text-size-regular-20 {
+  line-height: 1.65 !important;
+  color: #475467;
+}
+
+/* ---------------------------------------------------------------------
+   3. Monospace "eyebrow"-labels — tech-signatuur (geen BentoML-kleur)
+   --------------------------------------------------------------------- */
+.badge, .badge.gray,
+.uui-heading-medium-7 {
+  font-family: var(--wc-mono) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  font-size: .8rem !important;
+  font-weight: 700 !important;
+}
+.badge, .badge.gray {
+  border-radius: 999px !important;
+  border: 1px solid rgba(127, 5, 69, .25) !important;
+  color: var(--wc-brand) !important;
+  background: rgba(127, 5, 69, .06) !important;
+  box-shadow: none !important;
+  padding: 6px 14px !important;
+}
+.uui-heading-medium-7 { color: var(--wc-brand) !important; }
+
+/* ---------------------------------------------------------------------
+   4. "Bento"-kaarten — uitgesproken rand, sterke hover-lift + glow
+   --------------------------------------------------------------------- */
+.service-home,
+.contact-card,
+.wc-card,
+.combine-faq4_accordion-3 {
+  border: 1.5px solid var(--wc-border) !important;
+  border-radius: var(--wc-radius-card) !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  background-color: #fff !important;
+  transition: transform .28s var(--wc-ease),
+              box-shadow .28s var(--wc-ease),
+              border-color .28s var(--wc-ease) !important;
+}
+.service-home:hover,
+.contact-card:hover {
+  transform: translateY(-8px) scale(1.012) !important;
+  box-shadow: var(--wc-shadow-brand) !important;
+  border-color: rgba(127, 5, 69, .45) !important;
+}
+.combine-faq4_accordion-3 {
+  margin-bottom: 12px !important;
+  padding: 6px 10px !important;
+}
+.combine-faq4_accordion-3:hover {
+  border-color: rgba(127, 5, 69, .4) !important;
+  box-shadow: var(--wc-shadow-md) !important;
+}
+
+/* Service-icoonvlakken: groter afgerond, met lichte merk-ring */
+.category-icon-wrapper,
+.contact-icon-wrapper {
+  border-radius: 14px !important;
+  transition: transform .28s var(--wc-ease) !important;
+}
+.service-home:hover .category-icon-wrapper { transform: scale(1.08) rotate(-3deg) !important; }
+
+/* ---------------------------------------------------------------------
+   5. Pill-knoppen — steviger, bold, zachte schaduw (kleuren blijven)
+   --------------------------------------------------------------------- */
+.button-primary,
+.button-primary-small,
+.button-primary-full,
+.button-primary-full-copy,
+.combine-button-small-2,
+.button-primary-right-icon,
+.w-button {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+  transition: transform .2s var(--wc-ease),
+              box-shadow .2s var(--wc-ease) !important;
+}
+.button-primary:hover,
+.button-primary-small:hover,
+.button-primary-full:hover,
+.button-primary-full-copy:hover,
+.combine-button-small-2:hover,
+.button-primary-right-icon:hover,
+.w-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--wc-shadow-md) !important;
+}
+.button-primary-full:hover,
+.combine-button-small-2:hover { box-shadow: var(--wc-shadow-brand) !important; }
+
+/* ---------------------------------------------------------------------
+   6. Formuliervelden — strak en zacht
+   --------------------------------------------------------------------- */
+.text-field, .text-field-plain {
+  border-radius: 12px !important;
+}
+.text-field-wrapper {
+  border: 1.5px solid var(--wc-border) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  transition: border-color .2s var(--wc-ease), box-shadow .2s var(--wc-ease) !important;
+}
+.text-field-wrapper:focus-within {
+  border-color: var(--wc-brand) !important;
+  box-shadow: 0 0 0 4px rgba(127, 5, 69, .12) !important;
+}
+
+/* ---------------------------------------------------------------------
+   7. Navigatie — sticky glas-balk
+   --------------------------------------------------------------------- */
+.navigation {
+  position: sticky !important;
+  top: 0 !important;
+  background-color: rgba(255, 255, 255, .8) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(14px) !important;
+  backdrop-filter: saturate(180%) blur(14px) !important;
+  border-bottom: 1px solid var(--wc-border) !important;
+  height: 78px !important;
+}
+
+/* ---------------------------------------------------------------------
+   8. Donker contrast-CTA-paneel (BentoML-achtige donkere band)
+   Gebruikt het donkere merk-paars/ink — niet BentoML's kleuren.
+   --------------------------------------------------------------------- */
+.cta-inner-wrapper {
+  background: linear-gradient(135deg, #1b0a13 0%, #2e0f20 55%, #14080f 100%) !important;
+  border: 1px solid rgba(127, 5, 69, .4) !important;
+  border-radius: 24px !important;
+  box-shadow: var(--wc-shadow-lg) !important;
+  padding: 56px 48px !important;
+}
+.cta-inner-wrapper .h2-heading { color: #fff !important; }
+.cta-inner-wrapper .text-block-17 { color: rgba(255, 255, 255, .72) !important; }
+.cta-inner-wrapper .badge,
+.cta-inner-wrapper .badge.gray {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, .3) !important;
+  background: rgba(255, 255, 255, .08) !important;
+}
+
+/* ---------------------------------------------------------------------
+   9. Meer witruimte / dramatischer ritme
+   --------------------------------------------------------------------- */
+.section-small,
+.section-small-copy {
+  padding-top: 104px !important;
+  padding-bottom: 104px !important;
+}
+
+/* ---------------------------------------------------------------------
+   10. Reduceer beweging op verzoek
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .001ms !important; }
+  body { background-attachment: scroll; }
+}
