@@ -218,7 +218,46 @@ p, .paragraph-6, .paragraph-7, .paragraph-11,
 }
 
 /* ---------------------------------------------------------------------
-   10. Reduceer beweging op verzoek
+   10. "Waarom kiezen voor weClairify?" — gecentreerd blok met
+       scheidingslijnen en icoon rechts (geïnspireerd op screenshot 2)
+   --------------------------------------------------------------------- */
+h4:has(+ .uui-section_layout21) {
+  text-align: center !important;
+}
+.uui-layout20_component-copy {
+  grid-template-columns: 1fr !important;   /* lege 2e kolom verwijderen */
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.uui-layout21_item-list { margin-top: 1.5rem !important; }
+.uui-layout21_item {
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  border-top: 1px solid var(--wc-border) !important;
+  padding: 22px 4px !important;
+}
+.uui-layout21_item > *:not(.uui-layout21_item-icon-wrapper) {
+  flex: 1 1 auto !important;
+}
+.uui-layout21_item-icon-wrapper {
+  order: 2 !important;                 /* icoon naar rechts */
+  align-self: center !important;
+  margin: 0 0 0 1rem !important;
+  background: rgba(127, 5, 69, .08) !important;
+  color: var(--wc-brand) !important;
+  border-radius: 10px !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+
+/* ---------------------------------------------------------------------
+   11. Reduceer beweging op verzoek
    --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: .001ms !important; }
