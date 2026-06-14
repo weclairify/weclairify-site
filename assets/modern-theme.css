@@ -1,0 +1,205 @@
+/* =====================================================================
+   weClairify — Modern Theme (BentoML-geïnspireerd)
+   ---------------------------------------------------------------------
+   Doel: de site moderniseren richting een strakke, hedendaagse
+   SaaS/developer-look (veel witruimte, rustige typografie, zachte
+   afgeronde kaarten met subtiele randen i.p.v. harde slagschaduwen,
+   strakke knoppen) — MET BEHOUD van het bestaande kleurenpalet
+   (weClairify-paars #7f0545, lavendel, geel, roze).
+
+   Laadt ná brand-refinements.css. Inhoud en structuur blijven gelijk;
+   dit herschrijft alleen de visuele afwerking. Volledig terugdraaibaar
+   door deze <link> te verwijderen.
+   ===================================================================== */
+
+:root {
+  --wc-brand: #7f0545;
+  --wc-brand-dark: #5e0333;
+  --wc-radius-card: 16px;
+  --wc-radius-btn: 10px;
+  --wc-border: rgba(16, 24, 40, .08);
+  --wc-ease: cubic-bezier(.4, 0, .2, 1);
+  /* Zachte, gelaagde schaduwen i.p.v. de harde offset-schaduw */
+  --wc-shadow-sm: 0 1px 2px rgba(16, 24, 40, .04), 0 1px 3px rgba(16, 24, 40, .06);
+  --wc-shadow-md: 0 4px 12px -2px rgba(16, 24, 40, .08), 0 2px 6px -2px rgba(16, 24, 40, .05);
+  --wc-shadow-lg: 0 24px 48px -12px rgba(16, 24, 40, .14);
+  --wc-shadow-brand: 0 10px 24px -8px rgba(127, 5, 69, .35);
+}
+
+/* ---------------------------------------------------------------------
+   1. Typografie — rustiger, strakker, meer adem
+   --------------------------------------------------------------------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.011em;
+}
+
+h1, h2, h3, h4, h5,
+.uui-heading-xlarge-3, .uui-heading-medium-7,
+.h2-heading, .combine-heading-style-h2-18,
+.heading-39, .heading-40, .heading-38, .lynx-heading-white {
+  letter-spacing: -0.03em !important;
+  line-height: 1.1 !important;
+}
+
+p, .paragraph-6, .paragraph-7, .paragraph-11,
+.uui-text-size-xlarge-4, .text-block-17,
+.combine-text-size-regular-19, .combine-text-size-regular-20 {
+  line-height: 1.65 !important;
+  color: #475467;
+}
+
+/* ---------------------------------------------------------------------
+   2. Knoppen — strak, afgerond, zachte schaduw (geen harde offset)
+   Kleuren blijven (paars/lavendel/geel); alleen vorm & diepte wijzigen.
+   --------------------------------------------------------------------- */
+.button-primary,
+.button-primary-small,
+.button-primary-full,
+.button-primary-full-copy,
+.combine-button-small-2,
+.button-primary-right-icon,
+.w-button {
+  border: none !important;
+  border-radius: var(--wc-radius-btn) !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 600 !important;
+  transition: transform .2s var(--wc-ease),
+              box-shadow .2s var(--wc-ease),
+              background-color .2s var(--wc-ease) !important;
+}
+
+.button-primary:hover,
+.button-primary-small:hover,
+.button-primary-full:hover,
+.button-primary-full-copy:hover,
+.combine-button-small-2:hover,
+.button-primary-right-icon:hover,
+.w-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--wc-shadow-md) !important;
+}
+
+.button-primary:active,
+.button-primary-small:active,
+.button-primary-full:active,
+.combine-button-small-2:active,
+.w-button:active {
+  transform: translateY(0) !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+}
+
+/* Het paarse merk-CTA krijgt een passende, zachte merk-schaduw */
+.button-primary-full:hover,
+.combine-button-small-2:hover {
+  box-shadow: var(--wc-shadow-brand) !important;
+}
+
+/* ---------------------------------------------------------------------
+   3. Kaarten — zacht afgerond, dunne rand, gelaagde schaduw
+   Vervangt de neo-brutalistische harde rand + offset-schaduw.
+   --------------------------------------------------------------------- */
+.service-home,
+.contact-card,
+.wc-card,
+.cta-inner-wrapper,
+.combine-faq4_accordion-3 {
+  border: 1px solid var(--wc-border) !important;
+  border-radius: var(--wc-radius-card) !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  background-color: #fff !important;
+  transition: transform .25s var(--wc-ease),
+              box-shadow .25s var(--wc-ease),
+              border-color .25s var(--wc-ease) !important;
+}
+
+.service-home:hover,
+.contact-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--wc-shadow-lg) !important;
+  border-color: rgba(127, 5, 69, .25) !important;
+}
+
+/* FAQ-items als nette losse kaarten met wat lucht ertussen */
+.combine-faq4_accordion-3 {
+  margin-bottom: 12px !important;
+  padding: 4px 8px !important;
+}
+.combine-faq4_accordion-3:hover {
+  border-color: rgba(127, 5, 69, .25) !important;
+  box-shadow: var(--wc-shadow-md) !important;
+}
+
+/* Service-icoonvlakken: zacht afgerond i.p.v. hard */
+.category-icon-wrapper,
+.contact-icon-wrapper {
+  border-radius: 12px !important;
+}
+
+/* ---------------------------------------------------------------------
+   4. Formuliervelden — moderner, zachter
+   --------------------------------------------------------------------- */
+.text-field,
+.text-field-plain,
+.text-field-wrapper,
+.cta-email-form .text-field {
+  border-radius: 10px !important;
+}
+.text-field-wrapper {
+  border: 1px solid var(--wc-border) !important;
+  box-shadow: var(--wc-shadow-sm) !important;
+  transition: border-color .2s var(--wc-ease), box-shadow .2s var(--wc-ease) !important;
+}
+.text-field-wrapper:focus-within {
+  border-color: var(--wc-brand) !important;
+  box-shadow: 0 0 0 4px rgba(127, 5, 69, .10) !important;
+}
+
+/* ---------------------------------------------------------------------
+   5. Navigatie — sticky met zachte glas/blur-balk (modern SaaS)
+   --------------------------------------------------------------------- */
+.navigation {
+  position: sticky !important;
+  top: 0 !important;
+  background-color: rgba(255, 255, 255, .82) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(12px) !important;
+  backdrop-filter: saturate(180%) blur(12px) !important;
+  border-bottom: 1px solid var(--wc-border) !important;
+  height: 80px !important;
+}
+
+/* ---------------------------------------------------------------------
+   6. Meer witruimte / rustiger ritme
+   --------------------------------------------------------------------- */
+.section-small,
+.section-small-copy {
+  padding-top: 96px !important;
+  padding-bottom: 96px !important;
+}
+
+.margin-bottom-24 { margin-bottom: 20px !important; }
+.margin-bottom-32 { margin-bottom: 28px !important; }
+
+/* Badges (labels) strak en pill-vormig */
+.badge,
+.badge.gray {
+  border-radius: 999px !important;
+  border: 1px solid var(--wc-border) !important;
+  box-shadow: none !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* ---------------------------------------------------------------------
+   7. CTA-blok & nieuwsbrief — zacht, modern paneel
+   --------------------------------------------------------------------- */
+.cta-wrapper {
+  border-radius: 24px !important;
+}
+
+/* ---------------------------------------------------------------------
+   8. Reduceer beweging op verzoek
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .001ms !important; }
+}
