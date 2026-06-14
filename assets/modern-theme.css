@@ -293,11 +293,15 @@ h4:has(+ .uui-section_layout21) {
 /* ---------------------------------------------------------------------
    12. Team — nette kaarten in een raster (bento-stijl)
    --------------------------------------------------------------------- */
+.uui-team08_component { display: block !important; }
+.uui-team08_content { margin-bottom: 2.5rem !important; max-width: 760px !important; }
 .uui-team08_list {
-  grid-template-columns: 1fr !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   grid-column-gap: 1rem !important;
   grid-row-gap: 1rem !important;
 }
+@media (max-width: 991px) { .uui-team08_list { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 600px) { .uui-team08_list { grid-template-columns: 1fr !important; } }
 .uui-team08_item {
   border: 1.5px solid var(--wc-border) !important;
   border-radius: 16px !important;
@@ -432,3 +436,58 @@ h4:has(+ .uui-section_layout21) {
   max-height: 3.5rem !important;
   object-fit: contain !important;
 }
+
+
+/* ---------------------------------------------------------------------
+   17. Footer (BentoML-stijl in weClairify-branding) + oude footer verbergen
+   --------------------------------------------------------------------- */
+.footer, .lynx-footer { display: none !important; }   /* oude minimale footer */
+
+.wc-footer {
+  background: linear-gradient(180deg, #f6eefb 0%, #f1e7f8 100%);
+  border-radius: 36px 36px 0 0;
+  margin-top: 56px;
+  padding: 64px 6% 32px;
+  color: #475467;
+  font-family: Inter, sans-serif;
+}
+.wc-footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.1fr 2fr; gap: 3rem; align-items: start;
+}
+.wc-footer-brand { display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start; }
+.wc-footer-logo img { height: 44px; width: auto; display: block; }
+.wc-footer-linkedin { display: inline-flex; }
+.wc-footer-linkedin img { display: block; opacity: .8; transition: opacity .2s; }
+.wc-footer-linkedin:hover img { opacity: 1; }
+.wc-footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.wc-footer-head {
+  font-family: var(--wc-mono); text-transform: uppercase; letter-spacing: .12em;
+  font-size: .78rem; font-weight: 700; color: var(--wc-brand); margin-bottom: 1.1rem;
+}
+.wc-footer-col a {
+  display: block; color: #475467; text-decoration: none; margin-bottom: .7rem;
+  font-size: .98rem; transition: color .2s var(--wc-ease);
+}
+.wc-footer-col a:hover { color: var(--wc-brand); }
+.wc-footer-bottom {
+  max-width: 1200px; margin: 2.5rem auto 0; padding-top: 1.5rem;
+  border-top: 1px solid rgba(127, 5, 69, .14);
+  display: flex; justify-content: space-between; gap: 1rem;
+  font-size: .88rem; color: #667085;
+}
+@media (max-width: 860px) {
+  .wc-footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .wc-footer-cols { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .wc-footer-cols { grid-template-columns: 1fr; }
+  .wc-footer-bottom { flex-direction: column; }
+}
+
+/* ---------------------------------------------------------------------
+   18. Team-overlap fix: ingeklapte ouders laten meegroeien (BFC)
+   --------------------------------------------------------------------- */
+.banner-home-mobiel,
+.banner-home-mobiel > section { display: flow-root !important; height: auto !important; min-height: 0 !important; }
+.uui-team08_component { position: relative !important; z-index: 2 !important; }
