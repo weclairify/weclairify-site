@@ -294,7 +294,7 @@ h4:has(+ .uui-section_layout21) {
    12. Team — nette kaarten in een raster (bento-stijl)
    --------------------------------------------------------------------- */
 .uui-team08_list {
-  grid-template-columns: 1fr 1fr !important;
+  grid-template-columns: 1fr !important;
   grid-column-gap: 1rem !important;
   grid-row-gap: 1rem !important;
 }
@@ -411,3 +411,10 @@ h4:has(+ .uui-section_layout21) {
 .banner-home-mobiel > .rich-text,
 .banner-home-mobiel > .container-contact-home { display: none !important; }
 .combine-section_team2 .combine-padding-global-14 { padding-top: 0 !important; }
+
+
+/* ---------------------------------------------------------------------
+   16. 'Vertrouwd door'-logo's groter
+   --------------------------------------------------------------------- */
+.uui-cta12_logo { height: 4rem !important; }
+.uui-cta12_logo-row { grid-column-gap: 2.5rem !important; row-gap: 1.5rem !important; }
