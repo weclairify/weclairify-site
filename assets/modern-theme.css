@@ -401,3 +401,13 @@ h4:has(+ .uui-section_layout21) {
   * { transition-duration: .001ms !important; }
   body { background-attachment: scroll; }
 }
+
+/* ---------------------------------------------------------------------
+   15. Over-pagina: overtollige witruimte weghalen
+   Lege leftover-containers (overgebleven na het verplaatsen van het
+   contactblok) verbergen, zodat het Team-blok dichter aansluit.
+   --------------------------------------------------------------------- */
+.banner-home-mobiel > .container-16,
+.banner-home-mobiel > .rich-text,
+.banner-home-mobiel > .container-contact-home { display: none !important; }
+.combine-section_team2 .combine-padding-global-14 { padding-top: 0 !important; }
