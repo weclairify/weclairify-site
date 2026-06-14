@@ -318,7 +318,61 @@ h4:has(+ .uui-section_layout21) {
 .uui-team08_image-wrapper { border-radius: 12px !important; }
 
 /* ---------------------------------------------------------------------
-   13. Reduceer beweging op verzoek
+   13. Reviews / testimonials — bento-kaarten met merk-accenten
+   --------------------------------------------------------------------- */
+.wc-reviews { padding: 96px 5%; }
+.wc-reviews-inner { max-width: 1140px; margin: 0 auto; }
+.wc-reviews-eyebrow {
+  font-family: var(--wc-mono);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--wc-brand);
+  text-align: center;
+}
+.wc-reviews-title {
+  font-weight: 800;
+  letter-spacing: -.04em;
+  text-align: center;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.05;
+  margin: .5rem 0 2.5rem;
+  color: var(--wc-ink);
+}
+.wc-reviews-grid { columns: 2; column-gap: 1.25rem; }
+@media (max-width: 720px) { .wc-reviews-grid { columns: 1; } }
+.wc-review {
+  break-inside: avoid;
+  margin: 0 0 1.25rem;
+  background: #fff;
+  border: 1.5px solid var(--wc-border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--wc-shadow-sm);
+  transition: transform .25s var(--wc-ease),
+              box-shadow .25s var(--wc-ease),
+              border-color .25s var(--wc-ease);
+}
+.wc-review:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--wc-shadow-md);
+  border-color: rgba(127, 5, 69, .3);
+}
+.wc-review-stars { color: var(--wc-brand); letter-spacing: 2px; font-size: 1rem; margin-bottom: 12px; }
+.wc-review-quote {
+  margin: 0 0 18px;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #344054;
+  font-style: normal;
+}
+.wc-review-by { display: flex; flex-direction: column; }
+.wc-review-name { font-weight: 700; color: var(--wc-ink); }
+.wc-review-role { color: var(--wc-brand); font-size: .9rem; }
+
+/* ---------------------------------------------------------------------
+   14. Reduceer beweging op verzoek
    --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: .001ms !important; }
