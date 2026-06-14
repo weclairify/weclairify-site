@@ -371,6 +371,29 @@ h4:has(+ .uui-section_layout21) {
 .wc-review-name { font-weight: 700; color: var(--wc-ink); }
 .wc-review-role { color: var(--wc-brand); font-size: .9rem; }
 
+/* Avatar-fallback: gebroken team-afbeelding -> initialen in merk-vlak */
+.wc-avatar-fallback {
+  position: relative;
+  background: linear-gradient(135deg, #7f0545, #b3286b) !important;
+  border-radius: 12px !important;
+  min-width: 64px;
+  min-height: 64px;
+  align-self: stretch;
+}
+.wc-avatar-fallback::after {
+  content: attr(data-initials);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  font-family: Inter, sans-serif;
+  letter-spacing: .02em;
+}
+
 /* ---------------------------------------------------------------------
    14. Reduceer beweging op verzoek
    --------------------------------------------------------------------- */
