@@ -544,3 +544,19 @@ h4:has(+ .uui-section_layout21) {
   text-decoration: underline !important;
   text-underline-offset: 2px !important;
 }
+
+/* ---------------------------------------------------------------------
+   20. Meer ruimte tussen de (sticky) menubalk en de pagina-header
+   --------------------------------------------------------------------- */
+.combine-padding-section-medium-13 { padding-top: 80px !important; }
+
+/* ---------------------------------------------------------------------
+   21. FAQ: blok dichter bij de vragen + geheel gecentreerd
+   --------------------------------------------------------------------- */
+.combine-faq4_component-2 {
+  max-width: 64rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  grid-column-gap: 2.5rem !important;
+}
+.combine-faq4_content-2 { justify-self: end !important; }
