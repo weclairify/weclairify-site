@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Weclairify CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6f3;          /* page plane */
+  --surface:#fdfbfa;        /* cards / chart surface */
+  --ink:#231018;
+  --ink-2:#5d4a52;
+  --muted:#93818a;
+  --hairline:#e9dde2;
+  --grid:#efe6ea;
+  --brand:#7f0545;
+  --brand-deep:#5c0332;
+  --brand-wash:#f6e7ee;
+  --seq-1:#7f0545;          /* betaald  (validated ordinal ramp) */
+  --seq-2:#b6567f;          /* gefactureerd */
+  --seq-3:#dda0bd;          /* open / gepland */
+  --good:#0ca30c;
+  --good-text:#006300;
+  --warn:#b97900;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:light}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 500px at 85% -10%, rgba(127,5,69,.05), transparent 60%);
+  min-height:100vh;
+}
+::selection{background:var(--brand);color:#fff}
+
+/* ---------- shell ---------- */
+.shell{max-width:1180px;margin:0 auto;padding:0 28px 90px}
+header.top{
+  display:flex;align-items:baseline;gap:22px;flex-wrap:wrap;
+  padding:34px 0 18px;border-bottom:1px solid var(--ink);
+}
+.wordmark{font-family:var(--serif);font-weight:700;font-size:30px;letter-spacing:-.01em}
+.wordmark em{font-style:italic;font-weight:400;color:var(--brand)}
+.tagline{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.top-actions{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+nav.tabs{display:flex;gap:2px;margin:22px 0 0;border-bottom:1px solid var(--hairline)}
+.tab{
+  appearance:none;border:0;background:none;cursor:pointer;
+  font:inherit;font-weight:600;color:var(--ink-2);
+  padding:10px 18px 12px;border-bottom:2px solid transparent;margin-bottom:-1px;
+  letter-spacing:.02em;
+}
+.tab:hover{color:var(--brand)}
+.tab[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+main{padding-top:30px}
+section[hidden]{display:none}
+
+/* ---------- controls ---------- */
+.btn{
+  appearance:none;cursor:pointer;font:inherit;font-weight:600;
+  border:1px solid var(--ink);background:var(--surface);color:var(--ink);
+  padding:8px 16px;border-radius:999px;transition:all .15s ease;font-size:14px;
+}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{background:var(--brand-deep);border-color:var(--brand-deep)}
+.btn.small{padding:5px 12px;font-size:13px}
+.btn.ghost{border-color:var(--hairline);color:var(--ink-2)}
+.btn.ghost:hover{border-color:var(--ink);background:none;color:var(--ink)}
+select,input[type="search"],input[type="text"],input[type="date"],input[type="number"],input[type="email"],input[type="tel"],textarea{
+  font:inherit;color:var(--ink);background:var(--surface);
+  border:1px solid var(--hairline);border-radius:8px;padding:8px 12px;
+}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+select.year{font-weight:700;border-radius:999px;padding:7px 14px;border-color:var(--ink)}
+
+/* ---------- stat tiles ---------- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:34px}
+.tile{
+  background:var(--surface);border:1px solid var(--hairline);border-radius:14px;
+  padding:18px 20px 16px;position:relative;overflow:hidden;
+}
+.tile::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--hairline)}
+.tile.accent::after{background:var(--brand)}
+.tile .label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.tile .value{font-weight:700;font-size:30px;letter-spacing:-.02em}
+.tile .sub{font-size:13px;color:var(--ink-2);margin-top:4px}
+.tile .sub .up{color:var(--good-text);font-weight:600}
+
+/* ---------- cards / panels ---------- */
+.panel{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;padding:24px;margin-bottom:26px}
+.panel h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:2px}
+.panel .panel-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+.panel-head{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.panel-head .spacer{margin-left:auto}
+
+/* ---------- chart ---------- */
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-bottom:10px}
+.legend .key{display:inline-flex;align-items:center;gap:7px}
+.legend .swatch{width:11px;height:11px;border-radius:3px;display:inline-block}
+.chart-wrap{position:relative}
+.chart-wrap svg{display:block;width:100%;height:auto}
+.tooltip{
+  position:absolute;pointer-events:none;z-index:5;display:none;
+  background:var(--ink);color:var(--paper);border-radius:10px;
+  padding:10px 13px;font-size:13px;line-height:1.55;min-width:180px;
+  box-shadow:0 8px 24px rgba(35,16,24,.25);
+}
+.tooltip b{font-size:14px}
+.tooltip .tt-row{display:flex;justify-content:space-between;gap:16px}
+.tooltip .tt-row .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+.bar-hit{fill:transparent;cursor:pointer}
+.bar-hit:hover{fill:rgba(127,5,69,.05)}
+
+/* ---------- tables ---------- */
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{
+  text-align:left;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--ink);
+  white-space:nowrap;
+}
+td{padding:10px 12px;border-bottom:1px solid var(--grid);vertical-align:middle}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.month-row td{
+  font-family:var(--serif);font-weight:600;font-size:16px;color:var(--brand);
+  border-bottom:1px solid var(--hairline);padding-top:26px;
+}
+tr.month-row:first-child td{padding-top:4px}
+tr.total-row td{font-weight:700;border-bottom:2px solid var(--hairline);background:var(--brand-wash)}
+tr.data-row:hover td{background:rgba(127,5,69,.035)}
+td .klant-name{font-weight:600}
+td .opdracht-sub{color:var(--ink-2)}
+.row-actions{display:flex;gap:4px;justify-content:flex-end;opacity:0;transition:opacity .12s}
+tr:hover .row-actions{opacity:1}
+.icon-btn{
+  appearance:none;border:1px solid var(--hairline);background:var(--surface);cursor:pointer;
+  width:28px;height:28px;border-radius:8px;font-size:13px;line-height:1;color:var(--ink-2);
+}
+.icon-btn:hover{border-color:var(--ink);color:var(--ink)}
+.icon-btn.danger:hover{border-color:#c0392b;color:#c0392b}
+
+/* status chips */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none;
+  font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;
+  border:1px solid var(--hairline);color:var(--ink-2);background:var(--surface);
+  transition:all .12s;white-space:nowrap;
+}
+.chip:hover{border-color:var(--ink)}
+.chip.on-fact{background:#fdf3e1;border-color:#e8cd9a;color:#8a5a00}
+.chip.on-paid{background:#e8f6e8;border-color:#b5dfb5;color:var(--good-text)}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.7}
+
+/* filters */
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.filters input[type="search"]{min-width:220px}
+.month-chips{display:flex;gap:6px;flex-wrap:wrap}
+.mchip{
+  appearance:none;cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;
+  border:1px solid var(--hairline);background:var(--surface);color:var(--ink-2);
+  padding:4px 11px;border-radius:999px;
+}
+.mchip:hover{border-color:var(--ink);color:var(--ink)}
+.mchip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ---------- klanten ---------- */
+.klant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.klant-card{
+  background:var(--surface);border:1px solid var(--hairline);border-radius:14px;
+  padding:20px;display:flex;flex-direction:column;gap:8px;
+}
+.klant-card h3{font-family:var(--serif);font-weight:600;font-size:19px}
+.klant-stats{display:flex;gap:18px;font-size:13px;color:var(--ink-2)}
+.klant-stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+.klant-contact{font-size:13.5px;color:var(--ink-2);border-top:1px solid var(--grid);padding-top:10px;display:grid;gap:3px}
+.klant-contact a{color:var(--brand);text-decoration:none}
+.klant-contact a:hover{text-decoration:underline}
+.klant-card .card-foot{margin-top:auto;padding-top:10px;display:flex;justify-content:flex-end}
+
+/* ---------- modal ---------- */
+dialog{
+  margin:auto;border:1px solid var(--ink);border-radius:16px;padding:0;
+  width:min(560px,92vw);background:var(--surface);color:var(--ink);
+}
+dialog::backdrop{background:rgba(35,16,24,.45);backdrop-filter:blur(2px)}
+.modal-head{padding:22px 26px 0}
+.modal-head h2{font-family:var(--serif);font-weight:600;font-size:22px}
+.modal-body{padding:18px 26px 26px;display:grid;gap:14px}
+.field{display:grid;gap:5px}
+.field label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.check-row{display:flex;gap:22px;padding-top:2px}
+.check-row label{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+input[type="checkbox"]{width:17px;height:17px;accent-color:var(--brand)}
+.modal-foot{display:flex;justify-content:space-between;gap:10px;padding:0 26px 24px}
+.modal-foot .right{display:flex;gap:10px;margin-left:auto}
+
+.empty{
+  text-align:center;color:var(--muted);padding:48px 20px;font-size:14px;
+  border:1px dashed var(--hairline);border-radius:14px;
+}
+.footnote{font-size:12.5px;color:var(--muted);margin-top:10px}
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--paper);padding:10px 20px;border-radius:999px;
+  font-size:14px;opacity:0;pointer-events:none;transition:all .25s ease;z-index:50;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:640px){
+  .field-row{grid-template-columns:1fr}
+  .shell{padding:0 16px 60px}
+  .wordmark{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header class="top">
+  <div>
+    <div class="wordmark">Weclairify <em>CRM</em></div>
+    <div class="tagline">Opdrachten · Omzet · Klanten</div>
+  </div>
+  <div class="top-actions">
+    <select class="year" id="yearSelect" aria-label="Jaar"></select>
+    <button class="btn primary" id="btnNew">+ Nieuwe opdracht</button>
+    <button class="btn ghost small" id="btnExportCsv">CSV</button>
+    <button class="btn ghost small" id="btnExportJson">Backup</button>
+    <button class="btn ghost small" id="btnImport">Import</button>
+    <input type="file" id="importFile" accept="application/json" hidden>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-tab="dashboard">Overzicht</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="opdrachten">Opdrachten</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="klanten">Klanten</button>
+</nav>
+
+<main>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="tab-dashboard" role="tabpanel">
+  <div class="tiles" id="tiles"></div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Omzet per maand</h2>
+        <div class="panel-sub" id="chartSub"></div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn ghost small" id="btnToggleTable">Tabel</button>
+    </div>
+    <div class="legend" id="chartLegend"></div>
+    <div class="chart-wrap" id="chartWrap">
+      <svg id="chart" role="img" aria-label="Staafdiagram: omzet per maand, uitgesplitst naar betaald, gefactureerd en open"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <div class="table-scroll" id="monthTableWrap" hidden></div>
+  </div>
+
+  <div class="panel">
+    <h2>Komende opdrachten</h2>
+    <div class="panel-sub">De eerstvolgende geplande opdrachten vanaf vandaag.</div>
+    <div class="table-scroll" id="upcomingWrap"></div>
+  </div>
+</section>
+
+<!-- ============ OPDRACHTEN ============ -->
+<section id="tab-opdrachten" role="tabpanel" hidden>
+  <div class="filters">
+    <input type="search" id="searchInput" placeholder="Zoek klant of opdracht…" aria-label="Zoeken">
+    <select id="statusFilter" aria-label="Status filter">
+      <option value="">Alle statussen</option>
+      <option value="open">Open</option>
+      <option value="gefactureerd">Gefactureerd</option>
+      <option value="betaald">Betaald</option>
+    </select>
+    <div class="month-chips" id="monthChips"></div>
+  </div>
+  <div class="panel">
+    <div class="table-scroll" id="opdrachtenWrap"></div>
+    <div class="footnote">Klik op de statuschips om <b>gefactureerd</b> / <b>betaald</b> direct aan of uit te zetten. Data wordt automatisch lokaal opgeslagen in je browser — maak regelmatig een backup via de knop rechtsboven.</div>
+  </div>
+</section>
+
+<!-- ============ KLANTEN ============ -->
+<section id="tab-klanten" role="tabpanel" hidden>
+  <div class="klant-grid" id="klantGrid"></div>
+</section>
+
+</main>
+</div>
+
+<!-- ============ MODAL: opdracht ============ -->
+<dialog id="dealModal">
+  <form method="dialog" id="dealForm">
+    <div class="modal-head"><h2 id="dealModalTitle">Nieuwe opdracht</h2></div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field">
+          <label for="fDate">Datum</label>
+          <input type="date" id="fDate" required>
+        </div>
+        <div class="field">
+          <label for="fKlant">Klant</label>
+          <input type="text" id="fKlant" list="klantList" required placeholder="Bijv. Albert Heijn">
+          <datalist id="klantList"></datalist>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fOpdracht">Soort opdracht</label>
+        <input type="text" id="fOpdracht" placeholder="Bijv. AI-training 4 uur">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fOmzet">Verwachte omzet (€)</label>
+          <input type="number" id="fOmzet" min="0" step="1" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="fZekerheid">Zekerheid (%)</label>
+          <input type="number" id="fZekerheid" min="0" max="100" step="5" value="100">
+        </div>
+      </div>
+      <div class="check-row">
+        <label><input type="checkbox" id="fGefactureerd"> Gefactureerd</label>
+        <label><input type="checkbox" id="fBetaald"> Betaald</label>
+      </div>
+      <div class="field">
+        <label for="fNotities">Notities</label>
+        <textarea id="fNotities" rows="2" placeholder="Optioneel"></textarea>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn ghost" id="btnDealCancel">Annuleren</button>
+      <div class="right">
+        <button type="submit" class="btn primary" id="btnDealSave">Opslaan</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<!-- ============ MODAL: klant ============ -->
+<dialog id="klantModal">
+  <form method="dialog" id="klantForm">
+    <div class="modal-head"><h2 id="klantModalTitle">Klantgegevens</h2></div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field">
+          <label for="kContact">Contactpersoon</label>
+          <input type="text" id="kContact">
+        </div>
+        <div class="field">
+          <label for="kTel">Telefoon</label>
+          <input type="tel" id="kTel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="kEmail">E-mail</label>
+        <input type="email" id="kEmail">
+      </div>
+      <div class="field">
+        <label for="kNotities">Notities</label>
+        <textarea id="kNotities" rows="3" placeholder="Tarief­afspraken, voorkeuren, historie…"></textarea>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn ghost" id="btnKlantCancel">Annuleren</button>
+      <div class="right">
+        <button type="submit" class="btn primary">Opslaan</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* =====================================================================
+   Weclairify CRM — vervangt de omzet-Excel.
+   Alle data staat in localStorage (sleutel: weclairify-crm-v1).
+   Backup/restore via JSON-export en -import; CSV-export voor Excel.
+   ===================================================================== */
+
+const STORE_KEY = "weclairify-crm-v1";
+const MONTHS = ["Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"];
+const MONTHS_SHORT = ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
+const eur = new Intl.NumberFormat("nl-NL",{style:"currency",currency:"EUR",maximumFractionDigits:0});
+const eurC = v => v==null ? "—" : eur.format(v);
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+
+/* ---------- startdata: overgenomen uit de Google Sheet ---------- */
+function seedData(){
+  const Y = 2026;
+  const d = (m,day) => `${Y}-${String(m).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+  const row = (date,klant,opdracht,omzet,extra={}) =>
+    Object.assign({id:uid(),date,klant,opdracht,omzet,zekerheid:100,gefactureerd:false,betaald:false,notities:""},extra);
+  return {
+    version:1,
+    deals:[
+      row(d(1,9),  "SMEG","Training Beeckestijn",1200),
+      row(d(1,13), "Bron Jewelry","Training 2 uur",1500),
+      row(d(1,19), "HU","Schrijfwijzer Assistent",1000),
+      row(d(1,23), "Albert Heijn","AI Prompting & Tools",1200),
+      row(d(2,13), "Copilot Academy","Meeloop ochtend",250),
+      row(d(2,16), "Vastgoed","Maatwerk AI-training 4 uur",3500),
+      row(d(2,23), "Copilot Academy","Meeloop ochtend",250),
+      row(d(2,26), "Angela","Advies (uurtje factuurtje)",250),
+      row(d(3,6),  "Vodafone","Basistraining",1125),
+      row(d(3,10), "Albert Heijn","Prompt tot Praktijk",1200),
+      row(d(3,19), "Microsoft Dynamics Event","Dagvoorzitter",3000),
+      row(d(3,30), "AM Match","Advies",626),
+      row(d(3,31), "Copilot Academy","Ondersteuning",562),
+      row(d(4,3),  "Copilot Academy","Zwolle",1125),
+      row(d(4,13), "Albert Heijn","Prompt tot Praktijk — eigen AH-domein",1200),
+      row(d(4,16), "Albert Heijn","Prompt tot Praktijk — eigen AH-domein",1200),
+      row(d(4,23), "Albert Heijn","Prompt tot Praktijk",1200),
+      row(d(4,24), "Albert Heijn","Prompt tot Praktijk",1200),
+      row(d(4,30), "Bijles","Bijles",250),
+      row(d(5,11), "Albert Heijn","Prompt tot Praktijk (Indira)",1200),
+      row(d(5,13), "Albert Heijn","Prompt tot Praktijk — eigen AH-domein",1200),
+      row(d(5,19), "Copilot Academy","Vodafone",750),
+      row(d(5,26), "Copilot Academy","Vodafone",750),
+      row(d(5,28), "Copilot Academy","IMDO",750),
+      row(d(6,1),  "Copilot Academy","Middag — Paww",562),
+      row(d(6,11), "Copilot Academy","Middag 13.00–16.00",562),
+      row(d(6,15), "Albert Heijn","Prompt tot Praktijk — eigen AH-domein",1200,{gefactureerd:true}),
+      row(d(6,16), "Copilot Academy","Ochtend",600),
+      row(d(6,24), "Copilot Academy","Ondersteuning online",562),
+      row(d(6,30), "Copilot Academy","Middag — Paww",562),
+      row(d(7,1),  "Copilot Academy","Online ochtend — VGZ",562),
+      row(d(7,8),  "Vilans","Ochtend",562),
+      row(d(7,9),  "Vilans","Middag",562),
+      row(d(7,15), "Vilans","Ochtend",562),
+      row(d(7,16), "Vilans","Ochtend",562),
+      row(d(8,13), "VGZ","Online workshop 1",562),
+      row(d(8,20), "VGZ","Online workshop 2",562),
+      row(d(8,25), "Museumvereniging","Workshop",562),
+      row(d(8,26), "VGZ","Online ondersteuning (Caro)",375),
+      row(d(8,27), "Albert Heijn","Prompt tot Praktijk — eigen AH-domein",1200),
+      row(d(9,1),  "Museumvereniging","Ochtend",562),
+      row(d(9,7),  "BNG Bank","Workshop",650),
+      row(d(9,10), "Museumvereniging","Workshop",600),
+      row(d(9,15), "Albert Heijn","Prompt tot Praktijk",1200),
+      row(d(9,17), "Albert Heijn","Prompt tot Praktijk",null),
+      row(d(9,19), "Museumvereniging","Workshop",562),
+      row(d(9,21), "Albert Heijn","Prompt tot Praktijk",1200),
+      row(d(9,29), "Museumvereniging","Workshop",600),
+      row(d(10,8), "Lezing schoonmaakbedrijf","Lezing",2500),
+      row(d(11,18),"Albert Heijn","Prompt tot Praktijk",1200),
+      row(d(11,30),"NN","Nog in te plannen",1200,{notities:"Datum nog niet bekend"}),
+      row(d(12,16),"Albert Heijn","Prompt tot Praktijk",null),
+    ],
+    klanten:{}   /* per klantnaam: {contact,email,tel,notities} */
+  };
+}
+
+/* ---------- opslag ---------- */
+let state;
+function load(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw){ state = JSON.parse(raw); if(!state.deals) throw 0; return; }
+  }catch(e){ /* corrupte data → opnieuw seeden */ }
+  state = seedData();
+  save();
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+  catch(e){ toast("Opslaan mislukt — controleer je browserinstellingen"); }
+}
+
+/* ---------- helpers ---------- */
+const dealYear  = deal => Number(deal.date.slice(0,4));
+const dealMonth = deal => Number(deal.date.slice(5,7)) - 1;
+function dealStatus(deal){
+  if(deal.betaald) return "betaald";
+  if(deal.gefactureerd) return "gefactureerd";
+  return "open";
+}
+function fmtDate(iso){
+  const dt = new Date(iso+"T12:00:00");
+  return `${dt.getDate()} ${MONTHS_SHORT[dt.getMonth()]}`;
+}
+function yearsInData(){
+  const set = new Set(state.deals.map(dealYear));
+  set.add(new Date().getFullYear());
+  return [...set].sort();
+}
+function dealsOfYear(y){
+  return state.deals.filter(deal => dealYear(deal)===y)
+    .sort((a,b)=> a.date.localeCompare(b.date));
+}
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>el.classList.remove("show"), 2600);
+}
+const esc = s => String(s??"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- globale UI-state ---------- */
+let curYear;
+let filterMonth = null;     /* null = alle maanden */
+let filterStatus = "";
+let searchTerm = "";
+
+/* =====================================================================
+   RENDER
+   ===================================================================== */
+function renderAll(){
+  renderYearSelect();
+  renderTiles();
+  renderChart();
+  renderMonthTable();
+  renderUpcoming();
+  renderOpdrachten();
+  renderKlanten();
+  renderKlantDatalist();
+}
+
+function renderYearSelect(){
+  const sel = document.getElementById("yearSelect");
+  sel.innerHTML = yearsInData().map(y=>`<option value="${y}" ${y===curYear?"selected":""}>${y}</option>`).join("");
+}
+
+/* ---------- stat tiles ---------- */
+function renderTiles(){
+  const deals = dealsOfYear(curYear);
+  const total   = deals.reduce((s,d)=> s+(d.omzet||0), 0);
+  const betaald = deals.filter(d=>d.betaald).reduce((s,d)=> s+(d.omzet||0), 0);
+  const gefact  = deals.filter(d=>d.gefactureerd && !d.betaald).reduce((s,d)=> s+(d.omzet||0), 0);
+  const today = new Date().toISOString().slice(0,10);
+  const teFact  = deals.filter(d=>!d.gefactureerd && !d.betaald && d.date<=today).reduce((s,d)=> s+(d.omzet||0), 0);
+  const gewogen = deals.reduce((s,d)=> s+(d.omzet||0)*((d.zekerheid??100)/100), 0);
+  const tiles = [
+    {label:`Verwachte omzet ${curYear}`, value:eur.format(total), sub:`gewogen naar zekerheid: ${eur.format(Math.round(gewogen))}`, accent:true},
+    {label:"Betaald", value:eur.format(betaald), sub:`${deals.filter(d=>d.betaald).length} opdrachten`},
+    {label:"Gefactureerd, nog niet betaald", value:eur.format(gefact), sub:`${deals.filter(d=>d.gefactureerd&&!d.betaald).length} facturen uitstaand`},
+    {label:"Nog te factureren", value:eur.format(teFact), sub:"uitgevoerde opdrachten zonder factuur"},
+  ];
+  document.getElementById("tiles").innerHTML = tiles.map(t=>`
+    <div class="tile ${t.accent?"accent":""}">
+      <div class="label">${t.label}</div>
+      <div class="value">${t.value}</div>
+      <div class="sub">${t.sub}</div>
+    </div>`).join("");
+}
+
+/* ---------- staafdiagram: omzet per maand, stapels per status ---------- */
+function monthBreakdown(){
+  const deals = dealsOfYear(curYear);
+  return MONTHS.map((name,m)=>{
+    const md = deals.filter(deal => dealMonth(deal)===m);
+    const sum = f => md.filter(f).reduce((s,deal)=> s+(deal.omzet||0), 0);
+    return {
+      name, m,
+      betaald: sum(deal=>deal.betaald),
+      gefactureerd: sum(deal=>deal.gefactureerd && !deal.betaald),
+      open: sum(deal=>!deal.gefactureerd && !deal.betaald),
+      count: md.length,
+    };
+  });
+}
+function renderChart(){
+  const data = monthBreakdown();
+  const total = data.reduce((s,r)=> s+r.betaald+r.gefactureerd+r.open, 0);
+  document.getElementById("chartSub").textContent =
+    `Totaal ${curYear}: ${eur.format(total)} · stapels tonen betaald, gefactureerd en open`;
+
+  const series = [
+    {key:"betaald",     label:"Betaald",      color:"var(--seq-1)", hex:"#7f0545"},
+    {key:"gefactureerd",label:"Gefactureerd", color:"var(--seq-2)", hex:"#b6567f"},
+    {key:"open",        label:"Open",         color:"var(--seq-3)", hex:"#dda0bd"},
+  ];
+  document.getElementById("chartLegend").innerHTML = series.map(s=>
+    `<span class="key"><span class="swatch" style="background:${s.color}"></span>${s.label}</span>`).join("");
+
+  const W=960, H=300, padL=58, padR=10, padT=12, padB=30;
+  const plotW = W-padL-padR, plotH = H-padT-padB;
+  const max = Math.max(1000, ...data.map(r=> r.betaald+r.gefactureerd+r.open));
+  const step = niceStep(max);
+  const yMax = Math.ceil(max/step)*step;
+  const y = v => padT + plotH - (v/yMax)*plotH;
+  const band = plotW/12, barW = Math.min(24, band*0.55);
+
+  let svg = "";
+  /* gridlines + y-ticks */
+  for(let v=0; v<=yMax; v+=step){
+    svg += `<line x1="${padL}" y1="${y(v)}" x2="${W-padR}" y2="${y(v)}" stroke="${v===0?"#c9b8c0":"#efe6ea"}" stroke-width="1"/>`;
+    svg += `<text x="${padL-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#93818a" style="font-variant-numeric:tabular-nums">${v.toLocaleString("nl-NL")}</text>`;
+  }
+  /* bars */
+  data.forEach((r,i)=>{
+    const cx = padL + band*i + band/2;
+    const x = cx - barW/2;
+    let acc = 0;
+    const segs = series.map(s=>({s, v:r[s.key]})).filter(o=>o.v>0);
+    segs.forEach((o,si)=>{
+      const y0 = y(acc), y1v = y(acc+o.v);
+      const h = Math.max(0, y0-y1v - (si<segs.length-1 ? 2 : 0)); /* 2px surface-gap tussen segmenten */
+      const isTop = si===segs.length-1;
+      if(h>0.5){
+        if(isTop && h>4){
+          svg += `<path d="M${x},${y0} L${x},${y1v+4} Q${x},${y1v} ${x+4},${y1v} L${x+barW-4},${y1v} Q${x+barW},${y1v} ${x+barW},${y1v+4} L${x+barW},${y0} Z" fill="${o.s.hex}"/>`;
+        }else{
+          svg += `<rect x="${x}" y="${y1v + (isTop?0:0)}" width="${barW}" height="${h}" fill="${o.s.hex}"/>`;
+        }
+      }
+      acc += o.v;
+    });
+    /* maandlabel */
+    svg += `<text x="${cx}" y="${H-8}" text-anchor="middle" font-size="11.5" fill="#5d4a52">${MONTHS_SHORT[i]}</text>`;
+    /* hover-hitvlak over de hele band */
+    svg += `<rect class="bar-hit" data-m="${i}" x="${padL+band*i}" y="${padT}" width="${band}" height="${plotH}" rx="6"/>`;
+  });
+
+  const chart = document.getElementById("chart");
+  chart.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  chart.innerHTML = svg;
+
+  /* tooltips */
+  const tip = document.getElementById("tooltip");
+  const wrap = document.getElementById("chartWrap");
+  chart.querySelectorAll(".bar-hit").forEach(hit=>{
+    hit.addEventListener("mousemove", ev=>{
+      const r = data[Number(hit.dataset.m)];
+      const tot = r.betaald+r.gefactureerd+r.open;
+      tip.innerHTML = `<b>${r.name} ${curYear}</b><br>
+        <span class="tt-row"><span><span class="sw" style="background:#7f0545"></span>Betaald</span><span>${eur.format(r.betaald)}</span></span>
+        <span class="tt-row"><span><span class="sw" style="background:#b6567f"></span>Gefactureerd</span><span>${eur.format(r.gefactureerd)}</span></span>
+        <span class="tt-row"><span><span class="sw" style="background:#dda0bd"></span>Open</span><span>${eur.format(r.open)}</span></span>
+        <span class="tt-row" style="border-top:1px solid rgba(255,255,255,.25);margin-top:4px;padding-top:4px"><span>Totaal · ${r.count} opdr.</span><b>${eur.format(tot)}</b></span>`;
+      const wr = wrap.getBoundingClientRect();
+      tip.style.display = "block";
+      let tx = ev.clientX - wr.left + 14, ty = ev.clientY - wr.top - 10;
+      if(tx + 230 > wr.width) tx = ev.clientX - wr.left - 230;
+      tip.style.left = tx+"px"; tip.style.top = ty+"px";
+    });
+    hit.addEventListener("mouseleave", ()=> tip.style.display="none");
+    hit.addEventListener("click", ()=>{
+      filterMonth = Number(hit.dataset.m);
+      switchTab("opdrachten");
+      renderOpdrachten();
+      renderMonthChips();
+    });
+  });
+}
+function niceStep(max){
+  const raw = max/4;
+  const pow = Math.pow(10, Math.floor(Math.log10(raw)));
+  for(const m of [1,2,2.5,5,10]){ if(raw <= m*pow) return m*pow; }
+  return 10*pow;
+}
+
+/* ---------- tabelweergave van de grafiek ---------- */
+function renderMonthTable(){
+  const data = monthBreakdown();
+  const rows = data.map(r=>`
+    <tr><td>${r.name}</td>
+      <td class="num">${eur.format(r.betaald)}</td>
+      <td class="num">${eur.format(r.gefactureerd)}</td>
+      <td class="num">${eur.format(r.open)}</td>
+      <td class="num"><b>${eur.format(r.betaald+r.gefactureerd+r.open)}</b></td></tr>`).join("");
+  const t = data.reduce((a,r)=>({b:a.b+r.betaald,g:a.g+r.gefactureerd,o:a.o+r.open}),{b:0,g:0,o:0});
+  document.getElementById("monthTableWrap").innerHTML = `
+    <table>
+      <thead><tr><th>Maand</th><th class="num">Betaald</th><th class="num">Gefactureerd</th><th class="num">Open</th><th class="num">Totaal</th></tr></thead>
+      <tbody>${rows}
+        <tr class="total-row"><td>Totaal ${curYear}</td>
+          <td class="num">${eur.format(t.b)}</td><td class="num">${eur.format(t.g)}</td>
+          <td class="num">${eur.format(t.o)}</td><td class="num">${eur.format(t.b+t.g+t.o)}</td></tr>
+      </tbody>
+    </table>`;
+}
+
+/* ---------- komende opdrachten ---------- */
+function renderUpcoming(){
+  const today = new Date().toISOString().slice(0,10);
+  const up = state.deals.filter(d=> d.date>=today).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,6);
+  const wrap = document.getElementById("upcomingWrap");
+  if(!up.length){ wrap.innerHTML = `<div class="empty">Geen geplande opdrachten — voeg er een toe met “+ Nieuwe opdracht”.</div>`; return; }
+  wrap.innerHTML = `<table>
+    <thead><tr><th>Datum</th><th>Klant</th><th>Opdracht</th><th class="num">Omzet</th></tr></thead>
+    <tbody>${up.map(d=>`
+      <tr class="data-row" style="cursor:pointer" onclick="openDeal('${d.id}')">
+        <td style="white-space:nowrap">${fmtDate(d.date)} ${dealYear(d)!==curYear?dealYear(d):""}</td>
+        <td><span class="klant-name">${esc(d.klant)}</span></td>
+        <td class="opdracht-sub">${esc(d.opdracht||"—")}</td>
+        <td class="num">${eurC(d.omzet)}</td>
+      </tr>`).join("")}</tbody></table>`;
+}
+
+/* ---------- opdrachtentabel ---------- */
+function renderMonthChips(){
+  const el = document.getElementById("monthChips");
+  el.innerHTML = `<button class="mchip" aria-pressed="${filterMonth===null}" data-m="all">Alle</button>` +
+    MONTHS_SHORT.map((m,i)=>`<button class="mchip" aria-pressed="${filterMonth===i}" data-m="${i}">${m}</button>`).join("");
+  el.querySelectorAll(".mchip").forEach(b=> b.addEventListener("click", ()=>{
+    filterMonth = b.dataset.m==="all" ? null : Number(b.dataset.m);
+    renderMonthChips(); renderOpdrachten();
+  }));
+}
+function renderOpdrachten(){
+  let deals = dealsOfYear(curYear);
+  if(filterMonth!==null) deals = deals.filter(d=> dealMonth(d)===filterMonth);
+  if(filterStatus) deals = deals.filter(d=> dealStatus(d)===filterStatus);
+  if(searchTerm){
+    const q = searchTerm.toLowerCase();
+    deals = deals.filter(d=> (d.klant+" "+(d.opdracht||"")+" "+(d.notities||"")).toLowerCase().includes(q));
+  }
+  const wrap = document.getElementById("opdrachtenWrap");
+  if(!deals.length){
+    wrap.innerHTML = `<div class="empty">Geen opdrachten gevonden voor deze selectie.</div>`;
+    return;
+  }
+  let html = `<table>
+    <thead><tr>
+      <th>Datum</th><th>Klant &amp; opdracht</th><th class="num">Zekerheid</th>
+      <th class="num">Omzet</th><th>Status</th><th></th>
+    </tr></thead><tbody>`;
+  let lastMonth = -1, monthSum = 0, grand = 0;
+  const monthTotalRow = () =>
+    `<tr class="total-row"><td></td><td>Totaal ${MONTHS[lastMonth]}</td><td></td><td class="num">${eur.format(monthSum)}</td><td></td><td></td></tr>`;
+  deals.forEach(d=>{
+    const m = dealMonth(d);
+    if(m!==lastMonth){
+      if(lastMonth>=0) html += monthTotalRow();
+      html += `<tr class="month-row"><td colspan="6">${MONTHS[m]}</td></tr>`;
+      lastMonth = m; monthSum = 0;
+    }
+    monthSum += d.omzet||0; grand += d.omzet||0;
+    const st = dealStatus(d);
+    html += `<tr class="data-row">
+      <td style="white-space:nowrap">${fmtDate(d.date)}</td>
+      <td><span class="klant-name">${esc(d.klant)}</span>${d.opdracht?` <span class="opdracht-sub">· ${esc(d.opdracht)}</span>`:""}${d.notities?`<br><span class="opdracht-sub" style="font-size:12.5px">✎ ${esc(d.notities)}</span>`:""}</td>
+      <td class="num">${d.zekerheid??100}%</td>
+      <td class="num">${eurC(d.omzet)}</td>
+      <td style="white-space:nowrap">
+        <span class="chip ${d.gefactureerd?"on-fact":""}" role="button" tabindex="0" title="Klik om te wisselen" onclick="toggleFlag('${d.id}','gefactureerd')"><span class="dot"></span>${d.gefactureerd?"Gefactureerd":"Niet gefactureerd"}</span>
+        <span class="chip ${d.betaald?"on-paid":""}" role="button" tabindex="0" title="Klik om te wisselen" onclick="toggleFlag('${d.id}','betaald')"><span class="dot"></span>${d.betaald?"Betaald ✓":"Niet betaald"}</span>
+      </td>
+      <td><div class="row-actions">
+        <button class="icon-btn" title="Bewerken" onclick="openDeal('${d.id}')">✎</button>
+        <button class="icon-btn danger" title="Verwijderen" onclick="deleteDeal('${d.id}')">✕</button>
+      </div></td>
+    </tr>`;
+  });
+  if(lastMonth>=0) html += monthTotalRow();
+  html += `<tr class="total-row"><td></td><td><b>Totaal selectie</b></td><td></td><td class="num">${eur.format(grand)}</td><td></td><td></td></tr>`;
+  html += "</tbody></table>";
+  wrap.innerHTML = html;
+}
+
+/* ---------- klanten ---------- */
+function klantAggregates(){
+  const map = new Map();
+  state.deals.forEach(d=>{
+    const k = d.klant.trim();
+    if(!map.has(k)) map.set(k,{naam:k,aantal:0,omzet:0,laatste:""});
+    const a = map.get(k);
+    a.aantal++; a.omzet += d.omzet||0;
+    if(d.date>a.laatste) a.laatste = d.date;
+  });
+  return [...map.values()].sort((a,b)=> b.omzet-a.omzet);
+}
+function renderKlanten(){
+  const grid = document.getElementById("klantGrid");
+  const list = klantAggregates();
+  if(!list.length){ grid.innerHTML = `<div class="empty">Nog geen klanten — voeg een opdracht toe.</div>`; return; }
+  grid.innerHTML = list.map(k=>{
+    const info = state.klanten[k.naam]||{};
+    const dt = new Date(k.laatste+"T12:00:00");
+    const contact = [
+      info.contact ? `<span>👤 ${esc(info.contact)}</span>` : "",
+      info.email ? `<a href="mailto:${esc(info.email)}">✉ ${esc(info.email)}</a>` : "",
+      info.tel ? `<a href="tel:${esc(info.tel)}">☏ ${esc(info.tel)}</a>` : "",
+      info.notities ? `<span style="white-space:pre-wrap">${esc(info.notities)}</span>` : "",
+    ].filter(Boolean).join("");
+    return `<div class="klant-card">
+      <h3>${esc(k.naam)}</h3>
+      <div class="klant-stats">
+        <span><b>${k.aantal}</b> opdrachten</span>
+        <span><b>${eur.format(k.omzet)}</b> omzet</span>
+        <span>laatste: <b>${dt.getDate()} ${MONTHS_SHORT[dt.getMonth()]} ${dt.getFullYear()}</b></span>
+      </div>
+      ${contact?`<div class="klant-contact">${contact}</div>`:""}
+      <div class="card-foot"><button class="btn ghost small" onclick="openKlant('${esc(k.naam).replace(/'/g,"\\'")}')">Gegevens bewerken</button></div>
+    </div>`;
+  }).join("");
+}
+function renderKlantDatalist(){
+  document.getElementById("klantList").innerHTML =
+    klantAggregates().map(k=>`<option value="${esc(k.naam)}">`).join("");
+}
+
+/* =====================================================================
+   ACTIES
+   ===================================================================== */
+let editingId = null;
+
+window.openDeal = function(id){
+  editingId = id||null;
+  const d = id ? state.deals.find(x=>x.id===id) : null;
+  document.getElementById("dealModalTitle").textContent = d ? "Opdracht bewerken" : "Nieuwe opdracht";
+  document.getElementById("fDate").value = d ? d.date : new Date().toISOString().slice(0,10);
+  document.getElementById("fKlant").value = d ? d.klant : "";
+  document.getElementById("fOpdracht").value = d ? (d.opdracht||"") : "";
+  document.getElementById("fOmzet").value = d && d.omzet!=null ? d.omzet : "";
+  document.getElementById("fZekerheid").value = d ? (d.zekerheid??100) : 100;
+  document.getElementById("fGefactureerd").checked = d ? !!d.gefactureerd : false;
+  document.getElementById("fBetaald").checked = d ? !!d.betaald : false;
+  document.getElementById("fNotities").value = d ? (d.notities||"") : "";
+  document.getElementById("dealModal").showModal();
+};
+
+window.deleteDeal = function(id){
+  const d = state.deals.find(x=>x.id===id);
+  if(!d) return;
+  if(!confirm(`Opdracht van ${d.klant} op ${fmtDate(d.date)} verwijderen?`)) return;
+  state.deals = state.deals.filter(x=>x.id!==id);
+  save(); renderAll();
+  toast("Opdracht verwijderd");
+};
+
+window.toggleFlag = function(id, flag){
+  const d = state.deals.find(x=>x.id===id);
+  if(!d) return;
+  d[flag] = !d[flag];
+  if(flag==="betaald" && d.betaald) d.gefactureerd = true;   /* betaald impliceert gefactureerd */
+  if(flag==="gefactureerd" && !d.gefactureerd) d.betaald = false;
+  save(); renderAll();
+};
+
+window.openKlant = function(naam){
+  const info = state.klanten[naam]||{};
+  document.getElementById("klantModalTitle").textContent = naam;
+  document.getElementById("kContact").value = info.contact||"";
+  document.getElementById("kEmail").value = info.email||"";
+  document.getElementById("kTel").value = info.tel||"";
+  document.getElementById("kNotities").value = info.notities||"";
+  const modal = document.getElementById("klantModal");
+  modal.dataset.klant = naam;
+  modal.showModal();
+};
+
+/* ---------- export / import ---------- */
+function download(name, text, type){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text],{type}));
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function exportCsv(){
+  const head = ["Datum","Klant","Soort opdracht","Zekerheid (%)","Verwachte omzet (EUR)","Gefactureerd","Betaald","Notities"];
+  const q = v => `"${String(v??"").replace(/"/g,'""')}"`;
+  const lines = [head.map(q).join(";")].concat(
+    [...state.deals].sort((a,b)=>a.date.localeCompare(b.date)).map(d=>
+      [d.date, d.klant, d.opdracht||"", d.zekerheid??100, d.omzet??"", d.gefactureerd?"ja":"nee", d.betaald?"ja":"nee", d.notities||""].map(q).join(";"))
+  );
+  download(`weclairify-crm-${new Date().toISOString().slice(0,10)}.csv`, "﻿"+lines.join("\r\n"), "text/csv;charset=utf-8");
+  toast("CSV geëxporteerd");
+}
+function exportJson(){
+  download(`weclairify-crm-backup-${new Date().toISOString().slice(0,10)}.json`, JSON.stringify(state,null,2), "application/json");
+  toast("Backup gedownload");
+}
+function importJson(file){
+  const rd = new FileReader();
+  rd.onload = () => {
+    try{
+      const data = JSON.parse(rd.result);
+      if(!Array.isArray(data.deals)) throw new Error("geen deals-lijst");
+      if(!confirm(`Backup bevat ${data.deals.length} opdrachten. Huidige data vervangen?`)) return;
+      state = {version:1, deals:data.deals, klanten:data.klanten||{}};
+      save(); renderAll();
+      toast("Backup teruggezet");
+    }catch(e){ toast("Ongeldig backup-bestand"); }
+  };
+  rd.readAsText(file);
+}
+
+/* =====================================================================
+   EVENTS & INIT
+   ===================================================================== */
+function switchTab(name){
+  document.querySelectorAll(".tab").forEach(t=>{
+    const on = t.dataset.tab===name;
+    t.setAttribute("aria-selected", on);
+    document.getElementById("tab-"+t.dataset.tab).hidden = !on;
+  });
+}
+document.querySelectorAll(".tab").forEach(t=> t.addEventListener("click", ()=>switchTab(t.dataset.tab)));
+
+document.getElementById("yearSelect").addEventListener("change", e=>{
+  curYear = Number(e.target.value);
+  renderAll();
+});
+document.getElementById("btnNew").addEventListener("click", ()=>openDeal(null));
+document.getElementById("btnExportCsv").addEventListener("click", exportCsv);
+document.getElementById("btnExportJson").addEventListener("click", exportJson);
+document.getElementById("btnImport").addEventListener("click", ()=>document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", e=>{
+  if(e.target.files[0]) importJson(e.target.files[0]);
+  e.target.value = "";
+});
+document.getElementById("btnToggleTable").addEventListener("click", e=>{
+  const tbl = document.getElementById("monthTableWrap");
+  const cw = document.getElementById("chartWrap");
+  const leg = document.getElementById("chartLegend");
+  const show = tbl.hidden;
+  tbl.hidden = !show; cw.hidden = show; leg.hidden = show;
+  e.target.textContent = show ? "Grafiek" : "Tabel";
+});
+document.getElementById("searchInput").addEventListener("input", e=>{
+  searchTerm = e.target.value.trim(); renderOpdrachten();
+});
+document.getElementById("statusFilter").addEventListener("change", e=>{
+  filterStatus = e.target.value; renderOpdrachten();
+});
+
+/* deal-modal */
+document.getElementById("dealForm").addEventListener("submit", ()=>{
+  const omzetRaw = document.getElementById("fOmzet").value;
+  const rec = {
+    date: document.getElementById("fDate").value,
+    klant: document.getElementById("fKlant").value.trim(),
+    opdracht: document.getElementById("fOpdracht").value.trim(),
+    omzet: omzetRaw==="" ? null : Math.max(0, Number(omzetRaw)),
+    zekerheid: Math.min(100, Math.max(0, Number(document.getElementById("fZekerheid").value)||0)),
+    gefactureerd: document.getElementById("fGefactureerd").checked,
+    betaald: document.getElementById("fBetaald").checked,
+    notities: document.getElementById("fNotities").value.trim(),
+  };
+  if(rec.betaald) rec.gefactureerd = true;
+  if(!rec.date || !rec.klant) return;
+  if(editingId){
+    Object.assign(state.deals.find(x=>x.id===editingId), rec);
+    toast("Opdracht bijgewerkt");
+  }else{
+    state.deals.push(Object.assign({id:uid()}, rec));
+    toast("Opdracht toegevoegd");
+  }
+  const y = Number(rec.date.slice(0,4));
+  if(y!==curYear) curYear = y;
+  save(); renderAll();
+});
+document.getElementById("btnDealCancel").addEventListener("click", ()=>document.getElementById("dealModal").close());
+
+/* klant-modal */
+document.getElementById("klantForm").addEventListener("submit", ()=>{
+  const naam = document.getElementById("klantModal").dataset.klant;
+  state.klanten[naam] = {
+    contact: document.getElementById("kContact").value.trim(),
+    email: document.getElementById("kEmail").value.trim(),
+    tel: document.getElementById("kTel").value.trim(),
+    notities: document.getElementById("kNotities").value.trim(),
+  };
+  save(); renderKlanten();
+  toast("Klantgegevens opgeslagen");
+});
+document.getElementById("btnKlantCancel").addEventListener("click", ()=>document.getElementById("klantModal").close());
+
+/* init */
+load();
+curYear = (()=>{
+  const ys = yearsInData();
+  const now = new Date().getFullYear();
+  return ys.includes(now) ? now : ys[ys.length-1];
+})();
+renderMonthChips();
+renderAll();
+</script>
+</body>
+</html>
