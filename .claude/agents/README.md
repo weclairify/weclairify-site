@@ -1,8 +1,8 @@
 # Het weClairify agent-team
 
-Dit project heeft een team van gespecialiseerde Claude-agents die samenwerken aan de site. Elke `.md` in deze map definieert één agent: de YAML-frontmatter bepaalt naam, inzetmoment (`description`), toegestane tools en het model; de tekst eronder is de systeeminstructie van die agent.
+Dit project heeft een team van gespecialiseerde Claude-agents. Elke `.md` in deze map definieert één agent: de YAML-frontmatter bepaalt naam, inzetmoment (`description`), toegestane tools en het model; de tekst eronder is de systeeminstructie van die agent. Er zijn twee teams: het **site-team** (onderhoudt deze website) en het **business-team** (acquisitie, opvolging, backoffice en materiaal voor weClairify als bedrijf).
 
-## Het team
+## Site-team
 
 | Agent | Rol | Mag wijzigen |
 |---|---|---|
@@ -11,6 +11,19 @@ Dit project heeft een team van gespecialiseerde Claude-agents die samenwerken aa
 | `huisstijl-bewaker` | styling binnen de huisstijl | alleen `brand-refinements.css` / `modern-theme.css` |
 | `tool-redacteur` | de 421 toolpagina's + overzicht | `ai-tools/`, `tools/`, `sitemap.xml` |
 | `site-reviewer` | kwaliteitscontrole vóór commit | niets — alleen-lezen |
+
+## Business-team
+
+| Agent | Rol | Spelregel |
+|---|---|---|
+| `acquisitie-agent` | brancheverenigingen & keynotes researchen, pitchmails, pipeline | mails alleen als Gmail-concept; geen klanten van tussenpartijen benaderen |
+| `opvolg-agent` | bedankmail + abonnement-aanbod na elke directe training | mails alleen als Gmail-concept |
+| `backoffice-agent` | wekelijkse check: facturatie, openstaand, planningsgaten, % via tussenpartijen | alleen-lezen |
+| `materiaal-agent` | slides, handouts, offertes, one-pagers in huisstijl | bedragen alleen na akkoord van Claire |
+
+Anders dan het site-team werken de business-agents met een denylist (`disallowedTools`) in plaats van een tools-allowlist: hun toolbehoefte is breed (Gmail-concepten, Artifact/CRM, websearch, Gamma), dus alles is toegestaan behalve wat expliciet geblokkeerd is — met versturen van e-mail als hardste blokkade.
+
+Het business-team leest het CRM (het Weclairify CRM-artifact) via de Artifact-tool en houdt eigen werklijsten bij in de collecties `pipeline` en `opvolging` van datzelfde CRM. Geen enkele agent verstuurt zelf e-mail — alles wordt als concept klaargezet, Claire beslist en verstuurt. De backoffice-agent draait daarnaast elke maandagochtend automatisch als Routine en mailt zijn weekrapport.
 
 ## Zo werken ze samen
 

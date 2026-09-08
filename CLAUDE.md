@@ -19,3 +19,5 @@ Dit project heeft een team van gespecialiseerde agents in `.claude/agents/` (zie
 - controle vóór elke commit → `site-reviewer` (altijd, als laatste stap)
 
 Laat agents met verschillende domeinen parallel draaien wanneer een taak meerdere domeinen raakt. Geef bevindingen van de site-reviewer terug aan de verantwoordelijke agent en commit pas na diens akkoord.
+
+Naast het site-team is er een business-team (zie `.claude/agents/README.md`): `acquisitie-agent`, `opvolg-agent`, `backoffice-agent` en `materiaal-agent`. Zij werken op het CRM-artifact en Gmail-concepten, niet op deze site. Vaste regel voor het hele business-team: nooit zelf e-mail versturen — alleen concepten klaarzetten.
