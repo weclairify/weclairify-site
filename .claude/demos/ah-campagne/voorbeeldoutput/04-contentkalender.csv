@@ -1,0 +1,24 @@
+week,datum_live,fase,kanaal,uiting,boodschap,formaat_specificatie,eigenaar,deadline_aanlevering,deadline_review,afhankelijk_van,status
+C-11,2026-W03,voorbereiding,intern,Conceptbesluit vastgelegd,Gekozen concept + hoofddoel,besluitnotitie 1 A4,marketingmanager,2026-W03,,,te doen
+C-10,2026-W04,voorbereiding,intern,Vier gerechten definitief,Welke vier gerechten en waarom,lijst + argumentatie,categoriemanager,2026-W04,,Conceptbesluit vastgelegd,te doen
+C-9,2026-W05,voorbereiding,intern,Compliance-voorscreening concept,Claimrisico's vooraf,rapport,compliance-agent + legal,2026-W05,2026-W05,Vier gerechten definitief,te doen
+C-8,2026-W06,productie,beeld,Fotoshoot vier gerechten,Beeldbank campagne,"1 shootdag, 4 gerechten, liggend + staand",art director,2026-W06,,Vier gerechten definitief,te doen
+C-8,2026-W06,productie,video,Opname vier films,Realtime bereiding ingekort,4x 20 sec + 4x 10 sec verticaal,videoproducent,2026-W06,,Fotoshoot vier gerechten,te doen
+C-7,2026-W07,productie,folder,Copy folderblok week 1-4,Vier gerechten twintig minuten,"kop 45 tekens, subkop 90, 4 recepten",copy-agent + eindredactie,2026-W07,2026-W07,Vier gerechten definitief,te doen
+C-7,2026-W07,review,intern,Merkreview folderblok,Toon en consistentie,rapport,merkbewaker,2026-W07,2026-W07,Copy folderblok week 1-4,te doen
+C-7,2026-W07,review,intern,Claimcheck folderblok,Claims en prijsvoorwaarden,rapport,compliance-agent,2026-W07,2026-W07,Copy folderblok week 1-4,te doen
+C-6,2026-W08,productie,folder,AANLEVERING DRUKWERK FOLDER,Complete folderpagina's,drukklaar PDF,traffic,2026-W08,2026-W08,Claimcheck folderblok,te doen
+C-6,2026-W08,productie,winkel,Winkelmateriaal naar drukker,Schapkaarten + ingangsdoek,"schapkaart A5, doek 200x80",winkelmarketing,2026-W08,2026-W08,Claimcheck folderblok,te doen
+C-5,2026-W09,productie,media,Media-inkoop definitief,Flighting week 1-8,inkooporder,mediaplanner,2026-W09,,Conceptbesluit vastgelegd,te doen
+C-4,2026-W10,productie,e-mail,Templates e-mail week 1-8,Gerecht van de week,"onderwerp max 45 tekens, preheader 90",crm-specialist,2026-W10,2026-W10,Copy folderblok week 1-4,te doen
+C-3,2026-W11,productie,app,Pushberichten week 1-8,Woensdagherinnering,max 120 tekens,app-team,2026-W11,2026-W11,Templates e-mail week 1-8,te doen
+C-2,2026-W12,productie,site,Landingspagina live op test,Vier tegels + boodschappenlijst,responsive,e-commerce,2026-W12,2026-W12,Opname vier films,te doen
+C-1,2026-W13,buffer,alle,BUFFERWEEK,Uitloop opvangen,,projectmanager,,,,te doen
+C-1,2026-W13,livegang,intern,Go/no-go overleg,Blokkerende punten afgetekend,checklist,projectmanager,2026-W13,2026-W13,Landingspagina live op test,te doen
+1,2026-W14,live,folder,Folderweek 1 - gerecht 1,Donderdag. Linzen. Twintig minuten.,receptblok pagina 4-5,folderredactie,,,AANLEVERING DRUKWERK FOLDER,te doen
+1,2026-W14,live,winkel,Schapblok week 1,Vier gerechten bij elkaar,"4 schapkaarten, 1 doek",winkeloperatie,,,Winkelmateriaal naar drukker,te doen
+1,2026-W14,live,e-mail,Mailing week 1,Gerecht van de week,"onderwerp 45, 3 blokken",crm-specialist,,,Templates e-mail week 1-8,te doen
+1,2026-W14,live,social,Postserie week 1,Eindbeeld eerst,"9:16 video 10 sec, 1:1 still",social-redacteur,,,Opname vier films,te doen
+3,2026-W16,live,folder,Prijsactie week 3,"Bonus, voorwaarden zichtbaar",prijsblok + voorwaarden,bonus-afdeling,2026-W10,2026-W10,Claimcheck folderblok,te doen
+6,2026-W19,live,folder,Prijsactie week 6,"Bonus, voorwaarden zichtbaar",prijsblok + voorwaarden,bonus-afdeling,2026-W13,2026-W13,Claimcheck folderblok,te doen
+8,2026-W21,evaluatie,intern,Eindmeting en evaluatie,Wat werkte en wat niet,rapport,insights,2026-W22,,Mailing week 1,te doen
