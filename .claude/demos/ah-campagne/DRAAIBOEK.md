@@ -188,7 +188,7 @@ aangekomen.
 
 ## Blok 9 — Eerlijk zijn (2 min) ⬅ **niet overslaan**
 
-Open `PROCES.md`, of toon de tijdlijn-pagina.
+Open `PROCES.md`, of toon de [tijdlijn-pagina](https://claude.ai/artifact/KPQDBoRtcCDigCGcCVkaKX) — die is voor een beamer gemaakt.
 
 > "Wat ik je níet ga vertellen, is dat 35 weken 12 weken wordt omdat AI zo snel typt. De
 > fotoshoot duurt nog steeds een dag. De drukdeadline schuift niet. Legal tekent nog steeds af.

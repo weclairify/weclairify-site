@@ -15,6 +15,7 @@ draaiboek voor op het scherm.
 | `PROCES.md` | De inhoudelijke onderbouwing: 35 weken versus 12 weken, waar de winst zit en wat AI níet korter maakt. |
 | `project/` | De campagnemap zelf. Dit is wat je tijdens de demo opent. |
 | `voorbeeldoutput/` | Vooraf gedraaide resultaten. Je vangnet als de live-demo hapert. |
+| [Tijdlijn-pagina](https://claude.ai/artifact/KPQDBoRtcCDigCGcCVkaKX) | Visuele versie voor op het scherm: beide tijdlijnen op dezelfde weekbalk, het agentteam en het demoblok. |
 
 ## Zo start je de demo
 

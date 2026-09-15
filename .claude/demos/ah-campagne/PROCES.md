@@ -6,6 +6,9 @@ Gebruik ze als gespreksmodel, niet als belofte. De sterkste versie van dit blok 
 
 ---
 
+> Visuele versie voor op het scherm: **[Campagne in twaalf weken](https://claude.ai/artifact/KPQDBoRtcCDigCGcCVkaKX)** — beide tijdlijnen op
+> dezelfde weekbalk.
+
 ## Het proces zoals het nu gaat (35 weken)
 
 | Fase | Weken | Wat er gebeurt | Waar de tijd in zit |

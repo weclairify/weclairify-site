@@ -19,7 +19,7 @@ Twee bestanden:
 
 `week,datum_live,fase,kanaal,uiting,boodschap,formaat_specificatie,eigenaar,deadline_aanlevering,deadline_review,afhankelijk_van,status`
 
-Regels voor de CSV: één rij per uiting (niet per kanaal), datums als `JJJJ-WW` of `JJJJ-MM-DD`, `afhankelijk_van` verwijst naar de `uiting` van een andere rij, `status` start altijd op `te doen`. Velden met komma's tussen dubbele aanhalingstekens. Controleer na het schrijven met een korte Bash-check dat elke rij evenveel kolommen heeft.
+Regels voor de CSV: één rij per uiting (niet per kanaal), datums als ISO-week `JJJJ-Www` (bijvoorbeeld `2026-W14`) of `JJJJ-MM-DD`, `afhankelijk_van` verwijst naar de `uiting` van een andere rij, `status` start altijd op `te doen`. Velden met komma's tussen dubbele aanhalingstekens. Controleer na het schrijven met een korte Bash-check dat elke rij evenveel kolommen heeft.
 
 ## Spelregels
 - Werk terug vanaf de livedatum, niet vooruit vanaf vandaag. Zet de vaste deadlines (drukwerk, media-inkoop, winkelweken, app-release) eerst en plan de rest daaromheen.
