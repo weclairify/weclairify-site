@@ -1117,6 +1117,7 @@ h4:has(+ .uui-section_layout21) {
   flex: none;
 }
 .wc-over .wco-person img[src$=".svg"] { object-fit: contain; padding: 12px; }
+.wc-over .wco-person div > span { display: block; }
 .wc-over .wco-person strong { display: block; font-family: var(--wca-display); font-size: 1.0625rem; letter-spacing: -.02em; }
 .wc-over .wco-person span { color: var(--wca-muted); font-size: .875rem; }
 .wc-over .wco-person .wco-arrow { position: absolute; top: 14px; right: 18px; color: var(--wca-ink); font-size: 1.125rem; }
