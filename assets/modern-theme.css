@@ -1836,3 +1836,45 @@ h4:has(+ .uui-section_layout21) {
 .wc-over .wco-sticker--blue { background: var(--wca-blue); color: var(--wca-ink); }
 .wc-home .wch-service--blue { background: var(--wca-blue); }
 .wc-home .wch-review:nth-child(4n) { background: var(--wca-blue); }
+
+
+/* ---------------------------------------------------------------------
+   30. Footer: rustiger en professioneler — heel lichtgrijs-blauw,
+       groter logo met tagline, nette onderbalk. Overschrijft 17 en 28.
+   --------------------------------------------------------------------- */
+.wc-footer {
+  --wcf-surface: #eef2f6;
+  --wcf-muted: #5b6573;
+  --wcf-line: rgba(25, 35, 50, .10);
+  background: var(--wcf-surface);
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px) 28px;
+}
+.wc-footer-cta { border-bottom: 1px solid var(--wcf-line); }
+.wc-footer-inner { grid-template-columns: 1.2fr 2fr; gap: clamp(32px, 5vw, 64px); }
+.wc-footer-logo img { height: 96px !important; width: auto; margin: -22px 0 -16px -4px; }
+.wc-footer-tagline {
+  margin: 0;
+  max-width: 22rem;
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: var(--wcf-muted);
+}
+.wc-footer-col a:hover { color: var(--wcf-ink); }
+.wc-footer-bottom {
+  max-width: 1200px;
+  margin: clamp(40px, 5vw, 56px) auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--wcf-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .8125rem;
+  color: var(--wcf-muted);
+}
+.wc-footer-word { display: none; }
+@media (max-width: 860px) {
+  .wc-footer-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .wc-footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
