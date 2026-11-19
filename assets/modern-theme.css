@@ -577,3 +577,388 @@ h4:has(+ .uui-section_layout21) {
   grid-column-gap: 2.5rem !important;
 }
 .combine-faq4_content-2 { justify-self: end !important; }
+
+
+/* ---------------------------------------------------------------------
+   22. Adviespagina — Jitter-geïnspireerde stijl in weClairify-kleuren
+       Alles gescoped onder .wc-advies: geen effect op andere pagina's.
+       Wit canvas, extra dikke strakke koppen, grijze label-pillen,
+       zwarte pill-knoppen, stapelende kaarten en een quote met marker.
+   --------------------------------------------------------------------- */
+.wc-advies {
+  --wca-ink: #19171c;
+  --wca-muted: #6f6b75;
+  --wca-faint: #b9b5bf;
+  --wca-surface: #f2f1f3;
+  --wca-surface-2: #e5e4e7;
+  --wca-pink: #f6cbe4;
+  --wca-brand: var(--wc-brand, #7f0545);
+  --wca-marker: #f6cbe4;
+  --wca-display: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wca-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #fff;
+  color: var(--wca-ink);
+  font-family: var(--wca-text);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: clip;
+}
+.wc-advies section {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.wc-advies a { color: inherit; }
+.wc-advies img { max-width: 100%; display: block; }
+
+/* Typografie */
+.wc-advies .wca-h1,
+.wc-advies .wca-h2,
+.wc-advies .wca-statement p,
+.wc-advies .wca-quote blockquote,
+.wc-advies .wca-card-big,
+.wc-advies .wca-stat-num {
+  font-family: var(--wca-display);
+  font-weight: 800;
+  color: var(--wca-ink);
+  text-wrap: balance;
+}
+.wc-advies .wca-h1 {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: .95 !important;
+  letter-spacing: -.028em;
+  margin: 18px auto 0;
+  max-width: 13ch;
+}
+.wc-advies .wca-h2 {
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  line-height: 1 !important;
+  letter-spacing: -.025em;
+  margin: 16px auto 0;
+  max-width: 18ch;
+}
+.wc-advies .wca-left { margin-left: 0; text-align: left; }
+.wc-advies .wca-lead {
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--wca-muted);
+  max-width: 34rem;
+  margin: 24px auto 0;
+}
+.wc-advies .wca-lead strong { color: var(--wca-ink); font-weight: 600; }
+.wc-advies .wca-sub {
+  color: var(--wca-muted);
+  max-width: 32rem;
+  margin: 18px auto 0;
+}
+
+/* Grijze label-pil */
+.wc-advies .wca-pill {
+  display: inline-block;
+  background: var(--wca-surface);
+  color: var(--wca-ink);
+  font-weight: 600;
+  font-size: .875rem;
+  letter-spacing: -.01em;
+  padding: 5px 13px;
+  border-radius: 999px;
+}
+
+/* Zwarte pill-knoppen */
+.wc-advies .wca-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.wc-advies .wca-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--wca-ink);
+  color: #fff !important;
+  font-family: var(--wca-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -.02em;
+  text-decoration: none;
+  padding: 15px 28px;
+  border-radius: 999px;
+  transition: transform .2s var(--wc-ease), background-color .2s var(--wc-ease);
+}
+.wc-advies .wca-btn:hover { transform: translateY(-2px); background: var(--wca-brand); }
+.wc-advies .wca-btn:focus-visible { outline: 3px solid var(--wca-pink); outline-offset: 3px; }
+.wc-advies .wca-btn--ghost {
+  background: var(--wca-surface);
+  color: var(--wca-ink) !important;
+}
+.wc-advies .wca-btn--ghost:hover { background: var(--wca-surface-2); }
+.wc-advies .wca-btn--lg { padding: 19px 36px; font-size: 1.1875rem; }
+
+/* Hero */
+.wc-advies .wca-hero {
+  text-align: center;
+  padding-top: clamp(64px, 10vw, 120px) !important;
+  padding-bottom: clamp(72px, 10vw, 128px) !important;
+}
+
+/* Statement: zwart dat overgaat in lichtgrijs */
+.wc-advies .wca-statement { padding-bottom: clamp(96px, 12vw, 160px) !important; }
+.wc-advies .wca-statement p {
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  line-height: 1.1 !important;
+  letter-spacing: -.025em;
+  max-width: 22ch;
+  margin: 0 auto;
+}
+.wc-advies .wca-statement span { color: var(--wca-faint); }
+
+/* Kopjes gecentreerd */
+.wc-advies .wca-center { text-align: center; }
+
+/* Stapelende kaarten */
+.wc-advies .wca-stack-wrap { padding-bottom: clamp(96px, 12vw, 160px) !important; }
+.wc-advies .wca-stack {
+  max-width: 760px;
+  margin: 56px auto 0;
+  display: grid;
+  gap: 28px;
+}
+.wc-advies .wca-card {
+  position: sticky;
+  top: 110px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  min-height: 360px;
+  padding: 36px;
+  border-radius: 40px;
+  background: var(--wca-surface);
+  box-shadow: 0 -10px 40px -18px rgba(25, 23, 28, .18);
+}
+.wc-advies .wca-card:nth-child(2) { top: 134px; }
+.wc-advies .wca-card:nth-child(3) { top: 158px; }
+.wc-advies .wca-card--pink { background: var(--wca-pink); }
+.wc-advies .wca-card--brand { background: var(--wca-brand); color: #fff; }
+
+.wc-advies .wca-card-text { align-self: start; max-width: 30rem; }
+.wc-advies .wca-card p { margin: 18px 0 0; color: #47434d; font-size: 1rem; }
+.wc-advies .wca-tag {
+  display: inline-block;
+  background: var(--wca-ink);
+  color: #fff;
+  font-family: var(--wca-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -.02em;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+.wc-advies .wca-tag--light { background: #fff; color: var(--wca-ink); }
+.wc-advies .wca-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  gap: 8px;
+}
+.wc-advies .wca-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: .9375rem;
+  color: #47434d;
+}
+.wc-advies .wca-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .55em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .55;
+}
+.wc-advies .wca-card-big {
+  font-size: clamp(4rem, 9vw, 7.5rem);
+  line-height: .85;
+  letter-spacing: -.05em;
+  text-align: right;
+}
+.wc-advies .wca-card--brand p,
+.wc-advies .wca-card--brand .wca-list li { color: rgba(255, 255, 255, .88); }
+.wc-advies .wca-card--brand .wca-card-big { color: #fff; }
+.wc-advies .wca-card-big--text { font-size: clamp(3rem, 6vw, 5rem); white-space: nowrap; }
+.wc-advies .wca-card-big small {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: -.01em;
+  font-weight: 600;
+  margin-top: 10px;
+  opacity: .7;
+}
+
+/* Waarom nu */
+.wc-advies .wca-why { padding-bottom: clamp(96px, 12vw, 160px) !important; }
+.wc-advies .wca-split-head {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: end;
+}
+.wc-advies .wca-split-head p { color: var(--wca-muted); margin: 0; max-width: 28rem; }
+.wc-advies .wca-split-head p strong { color: var(--wca-ink); font-weight: 600; }
+.wc-advies .wca-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 48px;
+}
+.wc-advies .wca-stat {
+  background: var(--wca-surface);
+  border-radius: 20px;
+  padding: 28px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wc-advies .wca-stat--pink { background: var(--wca-pink); }
+.wc-advies .wca-stat-num {
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  line-height: .9;
+  letter-spacing: -.05em;
+}
+.wc-advies .wca-stat p { margin: 24px 0 0; color: #47434d; max-width: 18rem; }
+.wc-advies .wca-source { font-size: .8125rem; color: var(--wca-muted); margin-top: 16px; }
+.wc-advies .wca-source a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Grote quote met marker-woord */
+.wc-advies .wca-quote {
+  text-align: center;
+  padding-bottom: clamp(96px, 12vw, 160px) !important;
+}
+.wc-advies .wca-quote blockquote {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -.035em;
+  max-width: 17ch;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 1 !important;
+}
+.wc-advies .wca-quote mark {
+  background: none;
+  color: var(--wca-brand);
+  font-style: italic;
+  padding: 0 .08em;
+  background-image: linear-gradient(transparent 58%, var(--wca-marker) 58%, var(--wca-marker) 92%, transparent 92%);
+}
+.wc-advies .wca-quote-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  padding: 10px 22px 10px 10px;
+  border: 1px solid var(--wca-surface-2);
+  border-radius: 6px;
+  text-align: left;
+  font-size: .875rem;
+}
+.wc-advies .wca-quote-by strong { display: block; font-weight: 600; }
+.wc-advies .wca-quote-by span:not(.wca-avatar) { color: var(--wca-muted); }
+.wc-advies .wca-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--wca-ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: .75rem;
+}
+
+/* Proces: rustig grid met iconen */
+.wc-advies .wca-process { padding-bottom: clamp(96px, 12vw, 160px) !important; }
+.wc-advies .wca-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 32px;
+  margin-top: 56px;
+}
+.wc-advies .wca-feature h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--wca-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.wc-advies .wca-feature svg {
+  width: 18px; height: 18px;
+  fill: none;
+  stroke: var(--wca-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+.wc-advies .wca-feature p { color: var(--wca-muted); font-size: .9375rem; margin: 8px 0 0; }
+
+/* Afsluitende CTA */
+.wc-advies .wca-cta {
+  text-align: center;
+  padding-bottom: clamp(96px, 12vw, 160px) !important;
+}
+.wc-advies .wca-h1--cta { font-size: clamp(2.5rem, 6vw, 4.75rem); max-width: 14ch; }
+.wc-advies .wca-cta .wca-btn { margin-top: 36px; }
+
+/* Scroll-reveal waar de browser het ondersteunt (geen JS nodig) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .wc-advies .wca-statement p,
+    .wc-advies .wca-stat,
+    .wc-advies .wca-quote blockquote,
+    .wc-advies .wca-feature {
+      animation: wca-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes wca-rise {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .wc-advies .wca-features { grid-template-columns: repeat(2, 1fr); }
+  .wc-advies .wca-split-head { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* Mobiel */
+@media (max-width: 640px) {
+  .wc-advies section { padding: 0 16px; }
+  .wc-advies .wca-card {
+    position: relative;
+    top: auto !important;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 28px 24px;
+    border-radius: 28px;
+    gap: 24px;
+  }
+  .wc-advies .wca-card-big { text-align: left; font-size: 3.5rem; }
+  .wc-advies .wca-stats { grid-template-columns: 1fr; }
+  .wc-advies .wca-stat { min-height: 0; }
+  .wc-advies .wca-features { grid-template-columns: 1fr; gap: 28px; }
+  .wc-advies .wca-btn { width: 100%; }
+  .wc-advies .wca-actions { flex-direction: column; }
+}
