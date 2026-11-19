@@ -1878,3 +1878,39 @@ h4:has(+ .uui-section_layout21) {
 @media (max-width: 520px) {
   .wc-footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
+
+
+/* ---------------------------------------------------------------------
+   31. Responsive-fixes (kleine schermen)
+   --------------------------------------------------------------------- */
+.wc-over .wco-contact > *,
+.wc-advies .wca-split-head > *,
+.wc-home .wch-faq > *,
+.wc-home .wch-human > * { min-width: 0; }
+.wc-over .wco-form input,
+.wc-over .wco-form textarea { width: 100%; min-width: 0; box-sizing: border-box; }
+.wc-over .wco-links a { overflow-wrap: anywhere; }
+@media (max-width: 400px) {
+  .wc-over .wco-form { padding: 20px; }
+  .wc-advies .wca-h2 { font-size: 1.85rem; }
+  .wc-advies .wca-h1 { font-size: 2.4rem; }
+}
+
+/* Toolspagina mobiel: kaarten over de volle breedte */
+@media (max-width: 767px) {
+  .wc-tools-page .section-small { padding-left: 16px !important; padding-right: 16px !important; }
+  .wc-tools-page .tools-collection { padding: 0 !important; }
+  .wc-tools-page .w-container { padding-left: 16px; padding-right: 16px; }
+}
+/* Privacypagina mobiel: tekst niet tegen de rand */
+@media (max-width: 991px) {
+  .rich-text-block-2,
+  .heading-10,
+  .wc-legal-lead { padding-left: 20px !important; padding-right: 20px !important; box-sizing: border-box; }
+}
+@media (max-width: 767px) {
+  .wc-tools-page [fs-cmsfilter-element="list"] { margin-left: 0 !important; margin-right: 0 !important; width: 100% !important; max-width: none !important; }
+}
+@media (max-width: 767px) {
+  .wc-tools-page .section-small { display: block !important; }
+}
