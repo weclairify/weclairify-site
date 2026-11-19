@@ -1093,7 +1093,7 @@ h4:has(+ .uui-section_layout21) {
 .wc-over .wco-team { padding-bottom: clamp(96px, 12vw, 160px) !important; }
 .wc-over .wco-people {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-top: 48px;
 }
@@ -1116,6 +1116,7 @@ h4:has(+ .uui-section_layout21) {
   background: #fff;
   flex: none;
 }
+.wc-over .wco-person img[src$=".svg"] { object-fit: contain; padding: 12px; }
 .wc-over .wco-person strong { display: block; font-family: var(--wca-display); font-size: 1.0625rem; letter-spacing: -.02em; }
 .wc-over .wco-person span { color: var(--wca-muted); font-size: .875rem; }
 .wc-over .wco-person .wco-arrow { position: absolute; top: 14px; right: 18px; color: var(--wca-ink); font-size: 1.125rem; }
@@ -1731,8 +1732,8 @@ h4:has(+ .uui-section_layout21) {
    --------------------------------------------------------------------- */
 .wc-footer {
   --wcf-ink: #19171c;
-  --wcf-muted: #6f6b75;
-  --wcf-surface: #f2f1f3;
+  --wcf-muted: #5c4a56;
+  --wcf-surface: #f6cbe4;
   --wcf-display: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   background: var(--wcf-surface);
   border-radius: 40px;
@@ -1751,7 +1752,7 @@ h4:has(+ .uui-section_layout21) {
   gap: 24px;
   flex-wrap: wrap;
   padding-bottom: clamp(32px, 5vw, 48px);
-  border-bottom: 1px solid rgba(25, 23, 28, .1);
+  border-bottom: 1px solid rgba(127, 5, 69, .18);
 }
 .wc-footer-title {
   font-family: var(--wcf-display) !important;
@@ -1803,7 +1804,7 @@ h4:has(+ .uui-section_layout21) {
 }
 .wc-footer-col a:hover { color: var(--wcf-ink); background-size: 100% 1.5px; }
 .wc-footer-bottom {
-  border-top: 1px solid rgba(25, 23, 28, .1);
+  border-top: 1px solid rgba(127, 5, 69, .18);
   color: var(--wcf-muted);
   font-size: .8125rem;
 }
@@ -1814,7 +1815,7 @@ h4:has(+ .uui-section_layout21) {
   line-height: .78;
   letter-spacing: -.06em;
   text-align: center;
-  color: #fff;
+  color: rgba(255, 255, 255, .55);
   margin: clamp(24px, 4vw, 40px) 0 -0.06em;
   user-select: none;
   white-space: nowrap;
