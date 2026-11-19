@@ -1824,3 +1824,14 @@ h4:has(+ .uui-section_layout21) {
   .wc-footer { margin: 40px 8px 8px; border-radius: 28px; }
   .wc-footer-btn { width: 100%; justify-content: center; }
 }
+
+
+/* ---------------------------------------------------------------------
+   29. Lichtblauw als vierde accentkleur (#d5e8f4, uit de oude
+       trainingenpagina) naast roze, geel en burgundy.
+   --------------------------------------------------------------------- */
+.wc-advies, .wc-tools-page { --wca-blue: #d5e8f4; }
+.wc-advies .wca-card--blue { background: var(--wca-blue); }
+.wc-over .wco-sticker--blue { background: var(--wca-blue); color: var(--wca-ink); }
+.wc-home .wch-service--blue { background: var(--wca-blue); }
+.wc-home .wch-review:nth-child(4n) { background: var(--wca-blue); }
