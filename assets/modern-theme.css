@@ -962,3 +962,18 @@ h4:has(+ .uui-section_layout21) {
   .wc-advies .wca-btn { width: 100%; }
   .wc-advies .wca-actions { flex-direction: column; }
 }
+
+
+/* ---------------------------------------------------------------------
+   23. Homepage "Expertises": drie kaarten naast elkaar
+       (na het weghalen van de kaart "Implementatie advies")
+   --------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-column-gap: 24px !important;
+  }
+}
+@media (max-width: 767px) {
+  .category-grid { grid-template-columns: 1fr !important; }
+}
