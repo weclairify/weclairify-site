@@ -436,6 +436,23 @@ h4:has(+ .uui-section_layout21) {
   max-height: 3.5rem !important;
   object-fit: contain !important;
 }
+/* Tablet en mobiel: logo's over meerdere regels, zodat ze leesbaar blijven */
+@media (max-width: 991px) {
+  .uui-cta12_logo-row {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    row-gap: 1.75rem !important;
+    gap: 1.75rem 1.5rem !important;
+  }
+  .uui-cta12_logo {
+    flex: 0 0 calc((100% - 2 * 1.5rem) / 3) !important;
+    width: auto !important;
+    max-height: 3rem !important;
+  }
+}
+@media (max-width: 600px) {
+  .uui-cta12_logo { max-height: 2.75rem !important; }
+}
 
 
 /* ---------------------------------------------------------------------
