@@ -1093,7 +1093,7 @@ h4:has(+ .uui-section_layout21) {
 .wc-over .wco-team { padding-bottom: clamp(96px, 12vw, 160px) !important; }
 .wc-over .wco-people {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-top: 48px;
 }
@@ -1116,6 +1116,7 @@ h4:has(+ .uui-section_layout21) {
   background: #fff;
   flex: none;
 }
+.wc-over .wco-person img[src$=".svg"] { object-fit: contain; padding: 12px; }
 .wc-over .wco-person strong { display: block; font-family: var(--wca-display); font-size: 1.0625rem; letter-spacing: -.02em; }
 .wc-over .wco-person span { color: var(--wca-muted); font-size: .875rem; }
 .wc-over .wco-person .wco-arrow { position: absolute; top: 14px; right: 18px; color: var(--wca-ink); font-size: 1.125rem; }
@@ -1722,3 +1723,115 @@ h4:has(+ .uui-section_layout21) {
 .wc-train .wct-btn-light { background: #fff; color: var(--wca-ink) !important; margin-top: 24px; }
 .wc-train .wct-btn-light:hover { background: var(--wca-pink); }
 .wc-train .wca-card-big small { white-space: nowrap; }
+
+
+/* ---------------------------------------------------------------------
+   28. Footer vernieuwd — zelfde stijl als de rest van de site:
+       grijze kaart met ronde hoeken, grote kop + knop, kolommen,
+       groot woordmerk. Overschrijft sectie 17; links ongewijzigd.
+   --------------------------------------------------------------------- */
+.wc-footer {
+  --wcf-ink: #19171c;
+  --wcf-muted: #5c4a56;
+  --wcf-surface: #f6cbe4;
+  --wcf-display: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--wcf-surface);
+  border-radius: 40px;
+  margin: 56px 16px 16px;
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px) 0;
+  color: var(--wcf-muted);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+}
+.wc-footer-cta {
+  max-width: 1200px;
+  margin: 0 auto clamp(40px, 6vw, 64px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-bottom: clamp(32px, 5vw, 48px);
+  border-bottom: 1px solid rgba(127, 5, 69, .18);
+}
+.wc-footer-title {
+  font-family: var(--wcf-display) !important;
+  font-weight: 800 !important;
+  font-size: clamp(2rem, 4.4vw, 3.5rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -.03em !important;
+  color: var(--wcf-ink) !important;
+  margin: 0 !important;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+.wc-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--wcf-ink);
+  color: #fff !important;
+  font-family: var(--wcf-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -.02em;
+  text-decoration: none;
+  padding: 15px 28px;
+  border-radius: 999px;
+  transition: background-color .2s var(--wc-ease), transform .2s var(--wc-ease);
+}
+.wc-footer-btn:hover { background: var(--wc-brand); transform: translateY(-2px); }
+.wc-footer-logo img { height: 40px; }
+.wc-footer-head {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: .875rem !important;
+  font-weight: 600 !important;
+  color: var(--wcf-ink) !important;
+  margin-bottom: 1rem !important;
+}
+.wc-footer-col a {
+  display: table;
+  color: var(--wcf-muted);
+  font-size: .9375rem;
+  margin-bottom: .65rem;
+  background-image: linear-gradient(var(--wc-brand), var(--wc-brand));
+  background-size: 0 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color .2s var(--wc-ease), background-size .25s var(--wc-ease);
+}
+.wc-footer-col a:hover { color: var(--wcf-ink); background-size: 100% 1.5px; }
+.wc-footer-bottom {
+  border-top: 1px solid rgba(127, 5, 69, .18);
+  color: var(--wcf-muted);
+  font-size: .8125rem;
+}
+.wc-footer-word {
+  font-family: var(--wcf-display);
+  font-weight: 800;
+  font-size: clamp(4rem, 17vw, 15rem);
+  line-height: .78;
+  letter-spacing: -.06em;
+  text-align: center;
+  color: rgba(255, 255, 255, .55);
+  margin: clamp(24px, 4vw, 40px) 0 -0.06em;
+  user-select: none;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .wc-footer { margin: 40px 8px 8px; border-radius: 28px; }
+  .wc-footer-btn { width: 100%; justify-content: center; }
+}
+
+
+/* ---------------------------------------------------------------------
+   29. Lichtblauw als vierde accentkleur (#d5e8f4, uit de oude
+       trainingenpagina) naast roze, geel en burgundy.
+   --------------------------------------------------------------------- */
+.wc-advies, .wc-tools-page { --wca-blue: #d5e8f4; }
+.wc-advies .wca-card--blue { background: var(--wca-blue); }
+.wc-over .wco-sticker--blue { background: var(--wca-blue); color: var(--wca-ink); }
+.wc-home .wch-service--blue { background: var(--wca-blue); }
+.wc-home .wch-review:nth-child(4n) { background: var(--wca-blue); }
