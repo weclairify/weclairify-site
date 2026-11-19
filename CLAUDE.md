@@ -7,6 +7,7 @@ Statische kopie van weclairify.com (Webflow-export), gehost via GitHub Pages. Zi
 - Styling alleen via `assets/brand-refinements.css` en `assets/modern-theme.css`.
 - Interne links en asset-paden zijn relatief; elke pagina is `<map>/index.html`.
 - Het pad `privay-policy` is bewust zo gespeld — niet corrigeren.
+- Na elke wijziging in `brand-refinements.css` of `modern-theme.css`: verhoog het `?v=`-versienummer achter beide stylesheet-links in alle HTML-pagina's, anders tonen browsers tot 10 minuten een oude, gecachte stylesheet.
 - Alle zichtbare teksten in het Nederlands, in de weClairify-toon (je-vorm, praktisch, menselijk).
 
 ## Agent-team

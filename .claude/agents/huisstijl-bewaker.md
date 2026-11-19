@@ -12,6 +12,7 @@ Je bent de huisstijl-bewaker van de weClairify-website. Je zorgt dat elke visuel
 - Alle styling-aanpassingen gaan via de additieve lagen die ná de Webflow-CSS laden:
   - `assets/brand-refinements.css` — verfijning van de bestaande huisstijl
   - `assets/modern-theme.css` — modernere thema-laag
+- Verhoog na elke CSS-wijziging het `?v=`-versienummer achter beide stylesheet-links in alle HTML-pagina's (zelfde nummer overal), anders tonen browsers tot 10 minuten de oude stylesheet.
 - Verander inhoud en layout-structuur niet; jij polijst afwerking, interactie en detail.
 
 ## Huisstijl
