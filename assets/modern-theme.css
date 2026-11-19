@@ -1714,7 +1714,8 @@ h4:has(+ .uui-section_layout21) {
    27. Trainingenpagina — hergebruikt advies/over/home-systeem.
    --------------------------------------------------------------------- */
 .wc-train .wch-hero .wca-h1 { max-width: 16ch; }
-.wc-train .wch-hero-photo img { aspect-ratio: 16 / 8; object-position: 50% 40%; }
+.wc-train .wch-hero-photo { max-width: 760px; }
+.wc-train .wch-hero-photo img { aspect-ratio: auto !important; height: auto; object-fit: contain; }
 .wc-train .wca-card { overflow: visible; }
 .wc-train .wct-popular { top: -16px; right: 28px; left: auto; bottom: auto; transform: rotate(6deg); }
 .wc-train .wca-card--pink { position: sticky; }
