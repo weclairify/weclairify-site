@@ -1186,7 +1186,7 @@ h4:has(+ .uui-section_layout21) {
 .wc-over .wco-news .wca-h2 { color: #fff; max-width: 16ch; }
 .wc-over .wco-news p { color: rgba(255, 255, 255, .82); max-width: 32rem; margin: 20px auto 0; }
 .wc-over .wco-pill-dark { background: rgba(255, 255, 255, .14); color: #fff; }
-.wc-over .wco-news-sticker { top: -18px; right: 8%; transform: rotate(8deg); }
+.wc-over .wco-news .wco-news-sticker { top: -18px; right: 8%; bottom: auto; left: auto; transform: rotate(8deg); }
 .wc-over .wco-news-form {
   display: flex;
   gap: 8px;
@@ -1209,8 +1209,8 @@ h4:has(+ .uui-section_layout21) {
 
 /* Fixes: tags niet uitrekken, sticker vrij van de kop, monogram */
 .wc-over .wco-tile .wca-tag { align-self: flex-start; }
-.wc-over .wco-sticker--brand { top: -8%; bottom: auto; left: auto; right: 6%; transform: rotate(5deg); }
-.wc-over .wco-sticker--yellow { top: 58%; }
+.wc-over .wco-hero .wco-sticker--brand { top: -8%; bottom: auto; left: auto; right: 6%; transform: rotate(5deg); }
+.wc-over .wco-hero .wco-sticker--yellow { top: 58%; }
 .wc-over .wco-monogram {
   width: 72px; height: 72px;
   border-radius: 14px;
@@ -1248,15 +1248,15 @@ h4:has(+ .uui-section_layout21) {
   .wc-over .wco-contact { gap: 32px; }
   .wc-over .wco-people { grid-template-columns: 1fr; }
   .wc-over .wco-tile { min-height: 0; }
-  .wc-over .wco-sticker--yellow { right: 0; }
+  .wc-over .wco-hero .wco-sticker--yellow { right: 0; }
 }
 
 /* Mobiel */
 @media (max-width: 640px) {
   .wc-over .wco-sticker { font-size: .75rem; padding: 5px 11px; box-shadow: 2px 2px 0 var(--wca-ink); }
-  .wc-over .wco-sticker--pink { top: -30px; left: 2%; }
-  .wc-over .wco-sticker--yellow { top: auto; bottom: -34px; right: 4%; }
-  .wc-over .wco-sticker--brand { display: none; }
+  .wc-over .wco-hero .wco-sticker--pink { top: -30px; left: 2%; }
+  .wc-over .wco-hero .wco-sticker--yellow { top: auto; bottom: -34px; right: 4%; }
+  .wc-over .wco-hero .wco-sticker--brand { display: none; }
   .wc-over .wco-hero .wca-pill { margin-bottom: 28px; }
   .wc-over .wco-hero .wca-lead { margin-top: 48px; }
   .wc-over .wco-tile { padding: 28px 24px; border-radius: 28px; }
@@ -1265,3 +1265,459 @@ h4:has(+ .uui-section_layout21) {
   .wc-over .wco-news-form { flex-direction: column; border-radius: 22px; }
   .wc-over .wco-news-form .wca-btn { width: 100%; }
 }
+
+
+/* ---------------------------------------------------------------------
+   25. Homepage — zelfde systeem als advies/over (.wc-advies + .wc-over),
+       met hero-foto, lopende logoband, dienstkaarten, reviews en FAQ.
+       Alles gescoped onder .wc-home.
+   --------------------------------------------------------------------- */
+.wc-home .wch-hero .wca-h1 { max-width: 15ch; }
+.wc-home .wch-hero { padding-bottom: clamp(56px, 7vw, 96px) !important; }
+.wc-home .wch-hero-photo {
+  position: relative;
+  margin: clamp(48px, 6vw, 72px) auto 0;
+  max-width: 1112px;
+}
+.wc-home .wch-hero-photo img {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 40px;
+  box-shadow: 0 40px 80px -40px rgba(25, 23, 28, .45);
+}
+.wc-home .wch-st1 { top: -18px; right: 6%; transform: rotate(6deg); }
+.wc-home .wch-st2 { bottom: -16px; left: 5%; top: auto; transform: rotate(-7deg); }
+
+/* Lopende logoband */
+.wc-home .wch-logos-wrap { padding-bottom: clamp(88px, 11vw, 150px) !important; text-align: center; }
+.wc-home .wch-logos-label {
+  font-size: .8125rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--wca-muted);
+  margin: 0 0 24px;
+}
+.wc-home .wch-logos {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.wc-home .wch-logos-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: wco-marquee 38s linear infinite;
+}
+.wc-home .wch-logos:hover .wch-logos-track { animation-play-state: paused; }
+.wc-home .wch-logos-dup { display: contents; }
+.wc-home .wch-logo {
+  height: 44px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: .65;
+  transition: filter .25s var(--wc-ease), opacity .25s var(--wc-ease);
+}
+.wc-home .wch-logo:hover { filter: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .wc-home .wch-logos-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; gap: 32px; }
+  .wc-home .wch-logos-dup { display: none; }
+}
+
+/* Dienstkaarten */
+.wc-home .wch-services { padding-bottom: clamp(96px, 12vw, 160px) !important; }
+.wc-home .wch-services .wca-h2 { max-width: 20ch; }
+.wc-home .wch-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+.wc-home .wch-service {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 320px;
+  padding: 32px;
+  border-radius: 40px;
+  text-decoration: none;
+  color: var(--wca-ink);
+  transition: transform .3s var(--wc-ease), box-shadow .3s var(--wc-ease);
+}
+.wc-home .wch-service:hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 30px 50px -30px rgba(25, 23, 28, .35); }
+.wc-home .wch-service--grey { background: var(--wca-surface); }
+.wc-home .wch-service--pink { background: var(--wca-pink); }
+.wc-home .wch-service--brand { background: var(--wca-brand); color: #fff; }
+.wc-home .wch-service p {
+  font-family: var(--wca-display);
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin: 24px 0 0;
+}
+.wc-home .wch-more { margin-top: auto; padding-top: 28px; font-weight: 600; font-size: .9375rem; }
+.wc-home .wch-service:hover .wch-more span { display: inline-block; transform: translateX(4px); transition: transform .2s; }
+
+/* De menselijke kant */
+.wc-home .wch-human {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+  padding-bottom: clamp(96px, 12vw, 160px) !important;
+}
+.wc-home .wch-human-photo { position: relative; background: var(--wca-surface); border-radius: 40px; padding: 28px; }
+.wc-home .wch-human-photo img { width: 100%; border-radius: 20px; aspect-ratio: 4 / 5; object-fit: cover; }
+.wc-home .wch-st3 { top: auto; bottom: 20px; right: -14px; left: auto; transform: rotate(-6deg); }
+.wc-home .wch-human-text { color: var(--wca-muted); margin: 20px 0 28px; max-width: 32rem; }
+
+/* Reviews */
+.wc-home .wch-reviews { padding-bottom: clamp(96px, 12vw, 160px) !important; }
+.wc-home .wch-quote { padding: 32px 0 64px !important; }
+.wc-home .wch-review-grid { columns: 3 300px; column-gap: 16px; }
+.wc-home .wch-review {
+  break-inside: avoid;
+  margin: 0 0 16px;
+  padding: 28px;
+  border-radius: 24px;
+  background: var(--wca-surface);
+}
+.wc-home .wch-review:nth-child(3n+2) { background: var(--wca-pink); }
+.wc-home .wch-review:nth-child(5n) { background: var(--wco-yellow); }
+.wc-home .wch-review blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: #3b3740;
+}
+.wc-home .wch-review figcaption {
+  margin-top: 18px;
+  font-family: var(--wca-display);
+  font-weight: 700;
+  font-size: .9375rem;
+  letter-spacing: -.01em;
+  color: var(--wca-ink);
+}
+
+/* FAQ */
+.wc-home .wch-faq {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+  padding-bottom: clamp(96px, 12vw, 160px) !important;
+}
+.wc-home .wch-faq-intro { color: var(--wca-muted); margin: 20px 0 28px; max-width: 28rem; }
+.wc-home .wch-faq-list { display: grid; gap: 10px; }
+.wc-home .wch-faq-item { background: var(--wca-surface); border-radius: 20px; padding: 0 24px; }
+.wc-home .wch-faq-item[open] { background: var(--wca-pink); }
+.wc-home .wch-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 0;
+  font-family: var(--wca-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -.02em;
+}
+.wc-home .wch-faq-item summary::-webkit-details-marker { display: none; }
+.wc-home .wch-faq-icon {
+  flex: none;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--wca-ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform .25s var(--wc-ease);
+}
+.wc-home .wch-faq-item[open] .wch-faq-icon { transform: rotate(45deg); }
+.wc-home .wch-faq-item p { margin: 0; padding: 0 0 22px; color: #47434d; }
+
+/* Homepage-fixes: kleuren erven, reviews zonder Webflow-blockquote-stijl */
+.wc-home .wch-service p,
+.wc-home .wch-more { color: inherit !important; }
+.wc-home .wch-review blockquote { background: none !important; font-style: normal; }
+.wc-home .wch-review figcaption { text-align: left; }
+
+/* Textarea in het contactformulier */
+.wc-over .wco-form textarea {
+  font: inherit;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--wca-ink);
+  background: #fff;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  padding: 14px 16px;
+  resize: vertical;
+  min-height: 96px;
+  outline: none;
+}
+.wc-over .wco-form textarea:focus { border-color: var(--wca-ink); }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .wc-home .wch-service,
+    .wc-home .wch-review,
+    .wc-home .wch-human > * {
+      animation: wca-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .wc-home .wch-service-grid { grid-template-columns: 1fr; }
+  .wc-home .wch-service { min-height: 0; }
+  .wc-home .wch-human,
+  .wc-home .wch-faq { grid-template-columns: 1fr; gap: 32px; }
+  .wc-home .wch-human-photo { max-width: 440px; }
+}
+@media (max-width: 640px) {
+  .wc-home .wch-hero-photo img { aspect-ratio: 4 / 3; border-radius: 28px; }
+  .wc-home .wch-service { padding: 24px; border-radius: 28px; }
+  .wc-home .wch-human-photo { padding: 16px; border-radius: 28px; }
+  .wc-home .wch-st3 { right: 8px; }
+  .wc-home .wch-logo { height: 34px; }
+  .wc-home .wch-logos-track { gap: 40px; }
+}
+
+
+/* ---------------------------------------------------------------------
+   26. Toolspagina — zelfde stijl, maar over de bestaande Webflow/
+       Finsweet-opbouw (filters en "oneindig laden" blijven werken).
+       Alles gescoped onder body.wc-tools-page.
+   --------------------------------------------------------------------- */
+.wc-tools-page {
+  --wca-ink: #19171c;
+  --wca-muted: #6f6b75;
+  --wca-surface: #f2f1f3;
+  --wca-surface-2: #e5e4e7;
+  --wca-pink: #f6cbe4;
+  --wca-brand: var(--wc-brand, #7f0545);
+  --wca-display: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wca-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #fff;
+}
+
+/* Hero */
+.wc-tools-page .title-wrapper-center { text-align: center; padding-top: clamp(48px, 7vw, 96px); }
+.wc-tools-page .wca-pill {
+  display: inline-block;
+  background: var(--wca-surface);
+  color: var(--wca-ink);
+  font-family: var(--wca-text);
+  font-weight: 600;
+  font-size: .875rem;
+  padding: 5px 13px;
+  border-radius: 999px;
+}
+.wc-tools-page .wct-h1 {
+  font-family: var(--wca-display) !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+  line-height: .95 !important;
+  letter-spacing: -.028em !important;
+  color: var(--wca-ink) !important;
+  margin: 18px auto 0 !important;
+  max-width: 12ch;
+  text-wrap: balance;
+}
+.wc-tools-page .wct-lead {
+  font-family: var(--wca-text);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--wca-muted);
+  max-width: 34rem;
+  margin: 24px auto 0;
+}
+.wc-tools-page .wct-lead strong { color: var(--wca-ink); font-weight: 600; }
+
+/* Filter-chips */
+.wc-tools-page .categorie-filter-form { margin: 40px 0 48px; }
+.wc-tools-page .collection-list-12 {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.wc-tools-page .collection-item-5 { margin: 0 !important; padding: 0 !important; }
+.wc-tools-page .fs_checkbox-2_field-2 { margin: 0 !important; padding: 0 !important; position: relative; }
+.wc-tools-page .fs_checkbox-2_button-2 { position: absolute !important; inset: 0; opacity: 0; margin: 0 !important; }
+.wc-tools-page .fs_checkbox-2_label-2 {
+  display: inline-block !important;
+  background: var(--wca-surface) !important;
+  color: var(--wca-ink) !important;
+  font-family: var(--wca-text) !important;
+  font-weight: 600 !important;
+  font-size: .9375rem !important;
+  padding: 9px 18px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background-color .2s var(--wc-ease), color .2s var(--wc-ease), transform .2s var(--wc-ease);
+}
+.wc-tools-page .fs_checkbox-2_label-2:hover { background: var(--wca-surface-2) !important; transform: translateY(-1px); }
+.wc-tools-page .fs_checkbox-2_label-2.is-active-inputactive { background: var(--wca-ink) !important; color: #fff !important; }
+
+/* Toolkaarten */
+.wc-tools-page .tools-collection {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  gap: 16px !important;
+}
+.wc-tools-page .ai-tools {
+  display: flex !important;
+  flex-direction: column;
+  background: var(--wca-surface) !important;
+  border: 0 !important;
+  border-radius: 28px !important;
+  box-shadow: none !important;
+  padding: 24px !important;
+  margin: 0 !important;
+  width: auto !important;
+  text-align: left !important;
+  transition: transform .25s var(--wc-ease), background-color .25s var(--wc-ease);
+}
+.wc-tools-page .ai-tools:hover { transform: translateY(-4px); background: var(--wca-surface-2) !important; }
+.wc-tools-page .link-block-2 {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--wca-ink);
+}
+.wc-tools-page .image-14 {
+  float: none !important;
+  width: 44px !important;
+  height: 44px !important;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px;
+  margin: 0 !important;
+  flex: none;
+}
+.wc-tools-page .heading-6 {
+  font-family: var(--wca-display) !important;
+  font-weight: 800 !important;
+  font-size: 1.375rem !important;
+  line-height: 1.05 !important;
+  letter-spacing: -.025em !important;
+  color: var(--wca-ink) !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+.wc-tools-page .text-block-10 {
+  font-family: var(--wca-text) !important;
+  font-size: .9375rem !important;
+  line-height: 1.55 !important;
+  color: var(--wca-muted) !important;
+  text-align: left !important;
+  margin: 16px 0 0 !important;
+}
+.wc-tools-page .heading-8 { display: none !important; }
+.wc-tools-page .collection-list-wrapper-5 { margin: 16px 0 0 !important; }
+.wc-tools-page .collection-list-wrapper-5 .w-dyn-empty { display: none !important; }
+.wc-tools-page .collection-list-11 { display: flex !important; flex-wrap: wrap; gap: 6px; justify-content: flex-start !important; }
+.wc-tools-page .collection-item-4 { margin: 0 !important; padding: 0 !important; }
+.wc-tools-page .categorie-tool-pagina {
+  display: inline-block;
+  margin: 0 !important;
+  background: #fff;
+  color: var(--wca-ink) !important;
+  font-family: var(--wca-text) !important;
+  font-weight: 600 !important;
+  font-size: .75rem !important;
+  letter-spacing: 0 !important;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.wc-tools-page .tool-website-button,
+.wc-tools-page .tool-website-button-copy {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  font-family: var(--wca-display) !important;
+  font-weight: 600 !important;
+  font-size: .9375rem !important;
+  letter-spacing: -.01em;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  padding: 12px 18px !important;
+  transition: background-color .2s var(--wc-ease), color .2s var(--wc-ease);
+}
+.wc-tools-page .tool-website-button { margin: auto 0 0 !important; background: var(--wca-ink) !important; color: #fff !important; }
+.wc-tools-page .collection-list-wrapper-5 { margin-bottom: 20px !important; }
+.wc-tools-page .tool-website-button:hover { background: var(--wca-brand) !important; }
+.wc-tools-page .tool-website-button-copy { margin: 8px 0 0 !important; background: transparent !important; color: var(--wca-ink) !important; }
+.wc-tools-page .tool-website-button-copy:hover { background: #fff !important; }
+
+/* Toolspagina-fixes */
+.wc-tools-page .section-small { padding-top: 0 !important; padding-bottom: 0 !important; }
+.wc-tools-page .title-wrapper-center { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+.wc-tools-page .categorie-filter-form,
+.wc-tools-page .category-wrapper,
+.wc-tools-page .collection-item-5,
+.wc-tools-page .fs_checkbox-2_component-2,
+.wc-tools-page .fs_checkbox-2_group-2,
+.wc-tools-page .fs_checkbox-2_field-2 {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.wc-tools-page .link-block-2 { justify-content: flex-start !important; width: 100% !important; margin: 0 !important; }
+.wc-tools-page .collection-list-wrapper-5,
+.wc-tools-page .collection-list-11 { width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; }
+.wc-tools-page .collection-list-wrapper-5,
+.wc-tools-page .collection-list-11 { justify-content: flex-start !important; text-align: left !important; }
+
+/* Laadmelding onderaan */
+.wc-tools-page .pagination-button {
+  background: var(--wca-surface) !important;
+  color: var(--wca-muted) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  font-family: var(--wca-text) !important;
+  font-size: .875rem !important;
+  padding: 12px 22px !important;
+}
+.wc-tools-page .w-pagination-wrapper { justify-content: center; margin: 32px 0 96px; }
+
+@media (max-width: 640px) {
+  .wc-tools-page .tools-collection { grid-template-columns: 1fr !important; }
+  .wc-tools-page .ai-tools { border-radius: 22px !important; padding: 20px !important; }
+}
+
+
+/* ---------------------------------------------------------------------
+   27. Trainingenpagina — hergebruikt advies/over/home-systeem.
+   --------------------------------------------------------------------- */
+.wc-train .wch-hero .wca-h1 { max-width: 16ch; }
+.wc-train .wch-hero-photo img { aspect-ratio: 16 / 8; object-position: 50% 40%; }
+.wc-train .wca-card { overflow: visible; }
+.wc-train .wct-popular { top: -16px; right: 28px; left: auto; bottom: auto; transform: rotate(6deg); }
+.wc-train .wca-card--pink { position: sticky; }
+.wc-train .wct-btn-light { background: #fff; color: var(--wca-ink) !important; margin-top: 24px; }
+.wc-train .wct-btn-light:hover { background: var(--wca-pink); }
+.wc-train .wca-card-big small { white-space: nowrap; }
