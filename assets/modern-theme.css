@@ -911,36 +911,6 @@ h4:has(+ .uui-section_layout21) {
 }
 .wc-advies .wca-feature p { color: var(--wca-muted); font-size: .9375rem; margin: 8px 0 0; }
 
-/* Caro */
-.wc-advies .wca-caro {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 56px;
-  align-items: center;
-  padding-bottom: clamp(96px, 12vw, 160px) !important;
-}
-.wc-advies .wca-caro-photo {
-  background: var(--wca-surface);
-  border-radius: 40px;
-  padding: 28px;
-}
-.wc-advies .wca-caro-photo img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 30px 60px -24px rgba(25, 23, 28, .35);
-}
-.wc-advies .wca-caro-text p { color: var(--wca-muted); margin: 20px 0 0; max-width: 32rem; }
-.wc-advies .wca-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.wc-advies .wca-chips span {
-  background: var(--wca-surface);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: .875rem;
-  font-weight: 600;
-}
-
 /* Afsluitende CTA */
 .wc-advies .wca-cta {
   text-align: center;
@@ -955,8 +925,7 @@ h4:has(+ .uui-section_layout21) {
     .wc-advies .wca-statement p,
     .wc-advies .wca-stat,
     .wc-advies .wca-quote blockquote,
-    .wc-advies .wca-feature,
-    .wc-advies .wca-caro > * {
+    .wc-advies .wca-feature {
       animation: wca-rise linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 40%;
@@ -971,9 +940,7 @@ h4:has(+ .uui-section_layout21) {
 /* Tablet */
 @media (max-width: 991px) {
   .wc-advies .wca-features { grid-template-columns: repeat(2, 1fr); }
-  .wc-advies .wca-split-head,
-  .wc-advies .wca-caro { grid-template-columns: 1fr; gap: 28px; }
-  .wc-advies .wca-caro-photo { max-width: 420px; }
+  .wc-advies .wca-split-head { grid-template-columns: 1fr; gap: 28px; }
 }
 
 /* Mobiel */
@@ -992,7 +959,6 @@ h4:has(+ .uui-section_layout21) {
   .wc-advies .wca-stats { grid-template-columns: 1fr; }
   .wc-advies .wca-stat { min-height: 0; }
   .wc-advies .wca-features { grid-template-columns: 1fr; gap: 28px; }
-  .wc-advies .wca-caro-photo { padding: 16px; border-radius: 28px; }
   .wc-advies .wca-btn { width: 100%; }
   .wc-advies .wca-actions { flex-direction: column; }
 }
